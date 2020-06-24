@@ -1,0 +1,79 @@
+\chapter{Curves:  Diophantine properties \\ Henri Darmon}\label{ch:7}
+
+The majority of cases of interest in this chapter are $\Bbbk=\mathbb{Q}$ or $\Bbbk$ an algebraic number field.\\
+\indent \underline{\textbf{Diophantine Questions}}:  What is $X(\Bbbk)$?  Is it finite?  What is $\#X(\Bbbk)$ for the typical $X$?\\
+\indent We will somewhat ignore the integral points and focus more on rational points.  However, if $X$ is projective, $X(\mathbb{Z})=X(\mathbb{Q})$ and $X(\mathscr{O}_{K})=X(K)$.  If $X$ is affine, then $X$ injects into $\mathbb{A}^{n}$ for some $n \in \mathbb{N}$.  Also, $X(\mathbb{Z})=X(\mathbb{Q}) \cap \mathbb{A}^{n}(\mathbb{Z})$.  This will depend on the chosen equations.\\
+\indent What is $X(\mathscr{O}_{K})$ and $X(\mathscr{O}_{K,s})$?  Here $\mathscr{O}_{K,s}=\mathscr{O}_{K}[s^{-1}]$.  Let $X=\tilde{X}\setminus\{P_{1},P_{2},\dotsc,P_{s}\}$.  It has invariants $g$, the genus of $\tilde{X}$ and $s$, the number of deleted points.  Let $\chi(X)=2-2g-s \in \mathbb{Z}$.  A lot of Diophantine behaviour of $X$ is governed by $\chi(X)$.\\
+\indent \underline{\textbf{Fundamental Trichotomy}}:  $\chi > 0$, $\chi=0$, or $\chi < 0$.\\
+\indent If $\chi > 0$, then we have the following theorem:
+\begin{theorem}
+$X(\mathscr{O}_{K,s})$ is either empty or infinite.
+\end{theorem}
+\begin{proof}
+In the affine case, $g=0$ and $s=1$.  So $X=\mathbb{A}^{1}$ and $X(\mathscr{O}_{K,s})=\mathscr{O}_{K,s}$.\\
+\indent In the projective case $g=0$ and $s=0$.  So $X=\mathbb{P}_{1}$ or $X$ is a conic.  Thus, $X(\mathscr{O}_{K,s})=X(\Bbbk)=\Bbbk \cup \{\infty\}$.
+\end{proof}
+\indent We also have the following result:  \underline{\textbf{Hasse-Minkowski}}:  For $g=0$, $X(\mathbb{Q}) \ne \varnothing$ if and only if $X(\mathbb{Q}_{p}) \ne \varnothing$ for all primes $p$ and $X(\mathbb{R}) \ne \varnothing$.\\
+\indent If $\chi > 0$, then we have the following theorem:
+\begin{theorem}[Siegel, Faltings]
+$\#X(\mathscr{O}_{K,s}) < \infty$.
+\end{theorem}
+\begin{proof}
+In the affine case (Siegel $\sim$ 1932), prototypical examples $g=0$ and $s=3$, which corresponds to $\mathbb{P}_{1} \setminus \{0,1,\infty\}$, or $g=1$ and $s=1$, which corresponds to $E \setminus \{\infty\}$.  let $\mathscr{O}_{\mathbb{P}_{1} \setminus \{0,1,\infty\}/\mathbb{Z}} = \mathbb{Z}[x,1/x,1/(x-1)]$.  Also, $\mathbb{P}_{1} \setminus \{0,1,\infty\}(\mathscr{O}_{K,s})=\hom(\mathbb{Z}[x,1/x,1/(x-1)],\mathscr{O}_{K,s})=\{u \in \mathscr{O}_{K,s} \text{ such that } u-1 \in \mathscr{O}_{K,s}^{\ast}\}$.  Here the $s$-unit equation makes an appearance.  This leads to $y^{2}=x^{3}+ax+b$, where $(x,y) \in \mathscr{O}_{K,s}^{2}$.\\
+\indent In the projective case, we have $g > 1$ and $s=0$.  This is Faltings theorem.
+\end{proof}
+\indent If $\chi=0$, then we have the following theorem:
+\begin{theorem}[Dirichlet, Mordell-Weil]
+If $X(\mathscr{O}_{K,s})$ is non-empty, then it can be equipped with a natural group structure and is finitely generated.
+\end{theorem}
+\begin{proof}
+In the affine case, $g=0$ and $s=2$ corresponds to $\mathbb{P}_{1} \setminus \{0,\infty\}=\mathbb{G}_{m}$.  Thus, $X(\mathscr{O}_{K,s})=\mathscr{O}_{K,s}^{\ast}$.  This comes from Dirichlet's unit theorem.\\
+\indent In the projective case, $g=1$ and $s=0$ corresponds to $E$.  This is the Mordell-Weil theorem that $E(\mathbb{Q})$ and $E(\Bbbk)$ are finitely generated.
+\end{proof}
+\indent \underline{\textbf{Ranks}}  In the affine case, $\rk(\mathscr{O}_{K,s}^{\ast})=r_{1}+r_{2}-1+\#s$.\\
+\indent In the projective case, the rank of an elliptic curves is much more subtle.\\
+\indent We have $\mathbb{P}_{1} \setminus \{P,P^{\prime}\}$ corresponds to $x^{2}-Dy^{2}=1$.  The rank should be $0$ if $D < 0$ and $1$ if $D > 0$.\\
+\indent \underline{\textbf{Question}}:  Is rank of $E(\mathbb{Q})$ unbounded?  It is conjectured that $\rk E(\mathbb{Q})$ is $0$ half of the time and $\rk E(\mathbb{Q})$ is $1$ half of the time.  Bhargava, Shankar and many other authors have shown that there are a positive density of elliptic curves of rank $0$ or $1$.\\
+\indent \underline{\textbf{Proof of Mordell-Weil}}:  There are two ingredients:
+\begin{enumerate}[\upshape (a)]
+\item Heights:  $h:E(\mathbb{Q}) \to \mathbb{R}$.  It can be shown $\{h(P) < X\}$ is finite, $h(mP)=m^{2}h(P)$ and $h(P+Q)+h(P-Q)=2h(P)+2h(Q)$.
+\item Weak Mordell-Weil Theorem:  $E(\mathbb{Q})/nE(\mathbb{Q})$ is finite for all $n \ge 1$.
+\end{enumerate}
+Then, the above to ingredients implies that Mordell-Weil is true.  The method is to use descent.  Let $\{P_{1},P_{2},\dotsc,P_{r}\}$ set of representatives for $E(\mathbb{Q})/nE(\mathbb{Q})$.  So for $X$ sufficiently larger than $h(P_{j})$.  Let $S=\{P_{1},P_{2},\dotsc,P_{r}\} \cup \{P: h(P) < X\}$.  Then, $S$ generates $E(\mathbb{Q})$.  Let $P$ be a point not in $\mathbb{Z}[S]$ and has minimum height.  Then, there exists $P-P_{j}=nQ$ and $h(Q) < h(P)$, where $Q \in \mathbb{Q}[S]$.
+
+\section{Proof of the weak Mordell-Weil Theorem}
+
+We will assume $n=2$ and $E[2]$ is defined over $\mathbb{Q}$.  So the elliptic curve is of the form $y^{2}=(x-a)(x-b)(x-c)$ with $a,b,c \in \mathbb{Q}$.  \textcolor{red}{(insert diagram 1)}  Given $P \in E(\mathbb{Q})$, choose $\tilde{P} \in E(\overline{\mathbb{Q}})$ such that $2\tilde{P}=P$.  Let $\zeta \in \gal(\overline{\mathbb{Q}}/\mathbb{Q})=:G_{\mathbb{Q}}$.  Let $c_{P}(\zeta)=\tilde{P}^{\zeta}-\tilde{P}$.  Some properties of $c_{P}$:
+\begin{enumerate}[\upshape (1)]
+\item $c_{P} \in \hom_{\text{continuous}} (G_{\mathbb{Q}}, E[2])$
+\item $c_{P_{1}}=c_{P_{2}}$ if and only if $P_{1}-P_{2} \in 2E(\mathbb{Q})$ (somewhere $\delta:E(\mathbb{Q})/2E(\mathbb{Q}) \to^{injectively} \hom(G_{\mathbb{Q}}, E[2])$ defined by $P \mapsto c_{P}$)
+\item Let $L=\mathbb{Q}(\sqrt{\ell})$, where $\ell|2(a-b)(b-c)(a-c)$.
+\end{enumerate}
+Then, $c_{P}$ factors through $\gal(L/\mathbb{Q})$.  So $P=(x,y)$ and $\tilde{P}$ is defined over $\mathbb{Q}(\sqrt{x-a},\sqrt{x-b},\sqrt{x-c}) \subset L$.  This implies $\delta: E(\mathbb{Q})/2E(\mathbb{Q}) \to^{injection} \hom(\gal(L/\mathbb{Q}),E[2])$.\\
+\indent The highbrow version:  \textcolor{red}{(insert diagram 2)}\\
+\indent Take $G_{\mathbb{Q}}$-invariants.  \textcolor{red}{(insert diagram 3-6)}
+
+\section{Geometric interpretation of $\sel_{n}(E/\mathbb{Q})$}
+
+Consider $H^{1}(G_{\mathbb{Q}},E[n])$ and $H^{1}(G_{\mathbb{Q}},\aut(X))$, which is the set of $\mathbb{Q}$-forms of $X$.  Then, $E \to^{n} E$ is the basic $n$-cover.  Hence, $\aut(E \to^{n} E)=E[n]$.
+\begin{definition}
+An \textbf{$n$-cover} of $E$ is a curve $C$ of genus $1$ equipped with a $\mathbb{Q}$-rational map $\tilde{n}:C \to E$ and a $\overline{\mathbb{Q}}$-isomorphism $C \cong E$ such that $C \to^{\varphi} E$ \textcolor{red}{(diagram 7)} commutes.
+\end{definition}
+Then $H^{1}(\mathbb{Q},E)$ is the set of curves of genus $1$ such that $\jac(C)=_{\mathbb{Q}}E$.  Then, we can map $H^{1}(\mathbb{Q},E[n]) \to H^{1}(\mathbb{Q},E)$, where $(C \to^{\tilde{n}} E) \mapsto C$.  Then, $\sel_{n}(E(\mathbb{Q}))$ is the set of $n$-covers of $E$ \quad $(C \to^{\tilde{n}} E)$ such that $C(\mathbb{Q}_{\ell}) \ne \varnothing$ for all $\ell$ and $C(\mathbb{R}) \ne \varnothing$.  Also, $\Sha(E/\mathbb{Q})$ is the set of $C$ of genus $1$ such that $\jac{C} \cong E$ with $C(\mathbb{Q}_{\ell}) \ne \varnothing$ for all $\ell$ and $C(\mathbb{R}) \ne \varnothing$.
+\begin{theorem}[Swinnerton-Dyer]
+If $C \to^{\tilde{2}} E$ is an element of $\sel_{2}(E/\mathbb{Q})$, then $C$ has a $\mathbb{Q}$-rational divisor of degree $2$.
+\end{theorem}
+\begin{proof}
+Degree $2$ divisors of $C$ correspond to rational points on $\sym^{2}(C)=(C \times C)/2$.  Define a rational morphism $\sym^{2}(C) \to E$ defined by $\{P,Q\} \mapsto P+Q$.  Since $E=\jac(E)$, $P,Q \in C$ implies $P-Q \in E$.  Then, $2P=\tilde{2}P$.  Hence, $P+Q=\tilde{2}(P)+(Q-P)$.  Let $X=\varphi^{-1}(O)$.  What is $X$?  Over $\overline{\mathbb{Q}}$, $\varphi:\sym^{2}(E) \to E$ defined by $(P,Q) \mapsto P+Q$.  Then, $X(\mathbb{Q})=\{P,-P\}:P \in E(\overline{\mathbb{Q}})\}^{G_{\mathbb{Q}}}$ and $X=E/\langle P \mapsto -P\rangle=\mathbb{P}_{1}$.  The same reasoning, replacing $\overline{\mathbb{Q}}$ by $\mathbb{Q}_{\ell}$.  We obtain $C \cong_{\mathbb{Q}_{\ell}} E$.  So $X \cong_{\mathbb{Q}_{\ell}} \mathbb{P}_{1}$ for all $\ell$ and $\ell=\infty$.  so $X \cong_{\mathbb{Q}} \mathbb{P}_{1}$.  So Hasse-Minkowski is true.
+\end{proof}
+\begin{corollary}
+If $C \to^{\tilde{2}} E$ is in $\sel_{2}(E/\mathbb{Q})$, then $C$ has an equation of the form $y^{2}=f(x)$, where $\deg f(x)=4$.
+\end{corollary}
+We can get a positive proportion of $E$ with $\sel_{n}(E/\mathbb{Q})=0$ or $\sel_{n}(E/\mathbb{Q}) \cong \mathbb{Z}/n\mathbb{Z}$ for $n=2,3,4,5$.
+\begin{theorem}
+\begin{enumerate}[\upshape (1)]
+\item If $\sel_{n}(E/\mathbb{Q})=0$, ten $\rk E(\mathbb{Q})=0$.
+\item If $\sel_{n}(E/\mathbb{Q}) \cong \mathbb{Z}/n\mathbb{Z}$, ten $\rk E(\mathbb{Q})=1$.
+\end{enumerate}
+\end{theorem}
+(2) uses the connection between elliptic curves and $L$-functions (BSD).

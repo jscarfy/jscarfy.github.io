@@ -1,0 +1,237 @@
+\documentclass[12pt,amsfont]{amsart}
+%\usepackage{amsaddr}
+\usepackage{amssymb, fullpage, amsfonts, euscript, times, hyperref}
+\usepackage{ulem}
+\usepackage{color}\definecolor{Blue}{rgb}{0,0,1}
+\usepackage{color}\definecolor{Red}{rgb}{1,0,0}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{bbm}
+
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\usepackage[OT2,T1]{fontenc}
+
+\DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
+\DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
+\vfuzz=2pt
+\begin{document}
+\thispagestyle{empty}
+\parindent=0pt
+\parskip=4pt
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\renewcommand{\theenumi}{(\roman{enumi})}
+
+
+\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
+\newcommand{\li}{\mathop{\rm li}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\renewcommand{\pmod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\bS}{{\mathbb S}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bZ}{{\mathbb Z}}
+\newcommand{\bF}{{\mathbb F}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\Ha}{{\mathbb H}}
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bB}{\mathbb{B}}
+\renewcommand{\mod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\Tor}{{\operatorname{Tor}}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Sel}{\operatorname{Sel}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Avg}{\operatorname{Avg}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Alex}{\operatorname{Alex}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\R}{\mathcal{R}}
+
+
+
+\numberwithin{equation}{section}%{subsection} %sets equation numbers <chapter>.<section>.<index>
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{pbm}[theorem]{Problem}
+\newtheorem{pro}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{cnj}[theorem]{Conjecture}
+\newtheorem{dfn}[theorem]{Definition}
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{rmk}[theorem]{Remark}
+\newtheorem{xmp}[theorem]{Example}
+\newtheorem{exe}[theorem]{Exercise}
+\newenvironment{solution}
+               {\let\oldqedsymbol=\qedsymbol
+                \renewcommand{\qedsymbol}{$\blacktriangle$}
+                \begin{proof}[\bf Solution]} 
+               {\end{proof}
+                \renewcommand{\qedsymbol}{\oldqedsymbol}}
+\numberwithin{theorem}{section} %sets equation numbers <chapter>.<section>.<index>
+\title{\bf Lecture notes for\\LMS-CMI Research School on  \\``Bounded Gaps Between Primes''\\ September 22--26, 2014}
+\author{Justin Scarfy\\
+\href{mailto:scarfy@ugrad.math.ubc.ca}{
+{\texttt{\lowercase{scarfy@ugrad.math.ubc.ca}}} }
+\\
+{\textnormal{\textit{D{\lowercase{epartment of }}M{\lowercase{athematics}}\\ T\lowercase{he} U\lowercase{niversity of} B\lowercase{ritish} C\lowercase{olumbia}\\ R\lowercase{oom} 121, 1984 M\lowercase{athematics} R\lowercase{oad}\\V\lowercase{ancouver}, B\lowercase{ritish} C\lowercase{olumbia}, C\lowercase{anada} V6T 1Z2}}}\\ \\ \and \\ \\Stanley Yao Xiao \\ \href{mailto:stanley.xiao@uwaterloo.ca}{
+{\texttt{\lowercase{stanley.xiao@uwaterloo.ca}}} }\\ {\textnormal{\textit{D{\lowercase{epartment of }}P{\lowercase{ure}} M{\lowercase{athematics}}\\
+U{\lowercase{niversity of }}W{\lowercase{aterloo}}\\
+W{\lowercase{aterloo}}, O{\lowercase{ntario}}, C{\lowercase{anada}}
+N2L 3G1}}}}
+\begin{abstract}
+
+\end{abstract}
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\newpage
+%%%1.
+\section{Introduction to prime number theory. \\ $\zeta$- and $L$-functions,  the prime number theorem (1/4) \\by Andrew Granville}\label{1}
+
+
+
+%%%2
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Introduction to prime number theory.\\ $\zeta$- and $L$-functions, the prime number theorem (2/4) \\by Andrew Granville}\label{2}
+
+%%%3
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\Introduction to sieve theory (1/4)\\by Kannan Soundararajan}\label{3}
+
+%%%4
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\Introduction to sieve theory (2/4)\\by Kannan Soundararajan}\label{4}
+
+%%%5
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Introduction to prime number theory.\\ $\zeta$- and $L$-functions, the prime number theorem (3/4) \\by Andrew Granville}\label{5}
+
+%%%6
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Introduction to prime number theory.\\ $\zeta$- and $L$-functions,  the prime number theorem (4/4) \\by Andrew Granville}\label{6}
+
+%%%7
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\ Introduction to sieve theory (3/4)\\by Kannan Soundararajan}\label{7}
+
+%%%8
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\ Introduction to sieve theory (4/4)\\by Kannan Soundararajan}\label{8}
+
+%%%9
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Public Lecture\\ by Terry Tao}\label{9}
+
+
+%%%10
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Inputs from algebraic geometry (1/4)\\ by Emmanuel Kowalski}\label{10}
+
+%%%11
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Tutorial for Granville's Lecture Series\\ by Adam Harper}\label{7}
+
+%%%12
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Tutorial for Soundararajan's Lecture Series\\ by James Maynard}\label{12}
+
+
+
+%%%13
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Inputs from algebraic geometry (2/4)\\ by Emmanuel Kowalski}\label{13}
+
+%%%14
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Inputs from algebraic geometry (3/4)\\ by Emmanuel Kowalski}\label{14}
+
+%%%15
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The methods of Goldston, Pintz and Y{\i}ld{\i}r{\i}m and Maynard-Tao (1/3)\\by James Maynard}\label{15}
+
+%%%16
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Polymath discussion \\led by Ben Green}\label{16}
+
+%%%17
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Public Lecture \\by Yitang Zhang}\label{17}
+
+%%%18
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Inputs from algebraic geometry (4/4)\\ by Emmanuel Kowalski}\label{18}
+
+%%%19
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The methods of Goldston, Pintz and Y{\i}ld{\i}r{\i}m and Maynard-Tao (2/3)\\by James Maynard}\label{19}
+
+%%%20
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Poster \\by S\'{a}vio Ribas}\label{20}
+
+
+%%%21
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{The methods of Goldston, Pintz and Y{\i}ld{\i}r{\i}m and Maynard-Tao (3/3)\\by James Maynard}\label{21}
+
+%%%22
+\newpage
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\section{Tutorial for Maynard's Lecture Series\\ by James Maynard}\label{22}
+
+\end{document}

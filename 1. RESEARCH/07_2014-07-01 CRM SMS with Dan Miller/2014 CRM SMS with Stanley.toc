@@ -1,0 +1,53 @@
+\contentsline {section}{\tocsection {}{1}{Introduction and Perspectives\\by Manjul Bhargava}}{4}{section.1}
+\contentsline {section}{\tocsection {}{2}{Algebraic groups, representation theory, and invariant theory \\ by Eyal Goren}}{5}{section.2}
+\contentsline {section}{\tocsection {}{3}{Basic algebraic number theory (number fields, class groups) \\by Eknath Ghate}}{6}{section.3}
+\contentsline {section}{\tocsection {}{4}{Basics of binary quadratic forms and Gauss composition \\ by Andrew Granville}}{7}{section.4}
+\contentsline {section}{\tocsection {}{5}{Curves, geometric aspects \\ by Henri Darmon}}{8}{section.5}
+\contentsline {section}{\tocsection {}{6}{Basic analytic number theory\\ by Andrew Granville}}{9}{section.6}
+\contentsline {section}{\tocsection {}{7}{Curves, diophantines aspects\\ by Henri Darmon }}{10}{section.7}
+\contentsline {section}{\tocsection {}{8}{More algebraic groups, representation theory and invariant theory\\ by Eyal Goren}}{11}{section.8}
+\contentsline {section}{\tocsection {}{9}{Cubic rings\\ by Melanie Matchett-Wood}}{12}{section.9}
+\contentsline {section}{\tocsection {}{10}{Quartic and quintic rings\\ by Melanie Matchett-Wood}}{13}{section.10}
+\contentsline {section}{\tocsection {}{11}{Problem Set (1/7)}}{14}{section.11}
+\contentsline {subsection}{\tocsubsection {}{11.1}{{\bf Directly from Wood's cubic rings lecture.}}}{14}{subsection.11.1}
+\contentsline {subsection}{\tocsubsection {}{11.2}{{\bf Other Exercises Concerning Cubic Rings.}}}{14}{subsection.11.2}
+\contentsline {subsection}{\tocsubsection {}{11.3}{ {\bf Quartic Rings}}}{15}{subsection.11.3}
+\contentsline {subsection}{\tocsubsection {}{11.4}{{\bf Quartic rings and their cubic resolvents.}}}{16}{subsection.11.4}
+\contentsline {subsection}{\tocsubsection {}{11.5}{ {\bf Quintic Rings}}}{17}{subsection.11.5}
+\contentsline {subsection}{\tocsubsection {}{11.6}{ {\bf Noncommutative Rings}}}{17}{subsection.11.6}
+\contentsline {section}{\tocsection {}{12}{How to count rings and fields (1/2)\\ by Manjul Bhargava}}{18}{section.12}
+\contentsline {section}{\tocsection {}{13}{Rings associated to binary $n$-ic forms, composition of $2 \times n \times n$ boxes and class groups\\ by Melanie Matchett-Wood}}{19}{section.13}
+\contentsline {section}{\tocsection {}{14}{The zeta functions attached to prehomogeneous vector spaces \\ by Takashi Taniguchi}}{20}{section.14}
+\contentsline {section}{\tocsection {}{15}{Problem Set (2/7)}}{21}{section.15}
+\contentsline {subsection}{\tocsubsection {}{15.1}{ \textbf {An easy version of Davenport's lemma and some generalizations}}}{21}{subsection.15.1}
+\contentsline {subsection}{\tocsubsection {}{15.2}{ {\bf Counting number fields using the geometry of numbers.}}}{21}{subsection.15.2}
+\contentsline {subsection}{\tocsubsection {}{15.3}{ \textbf {Index-three subgroups in the class groups of quadratic fields}}}{22}{subsection.15.3}
+\contentsline {subsection}{\tocsubsection {}{15.4}{ \textbf {Binary $n$-ic forms and the ring associated to them}}}{22}{subsection.15.4}
+\contentsline {subsection}{\tocsubsection {}{15.5}{ \textbf {Poisson Summation}}}{22}{subsection.15.5}
+\contentsline {subsection}{\tocsubsection {}{15.6}{ { {\bf Zeta functions associated to prehomogeneous vector spaces}}}}{23}{subsection.15.6}
+\contentsline {subsection}{\tocsubsection {}{15.7}{\textbf {Counting squarefree integers less than $X$}}}{24}{subsection.15.7}
+\contentsline {section}{\tocsection {}{16}{How to count rings and fields (2/2)\\ by Manjul Bhargava}}{26}{section.16}
+\contentsline {section}{\tocsection {}{17}{Heuristics for number field counts and applications to curves over finite fields\\ by Melanie Matchett-Wood}}{27}{section.17}
+\contentsline {section}{\tocsection {}{18}{Moduli space of rings\\ by Bjorn Poonen}}{28}{section.18}
+\contentsline {section}{\tocsection {}{19}{Problem Set (3/7)}}{29}{section.19}
+\contentsline {section}{\tocsection {}{20}{Zeta Function methods\\by Frank Throne }}{30}{section.20}
+\contentsline {section}{\tocsection {}{21}{Counting Artin representations and modular forms of eight one \\by Eknath Ghate}}{31}{section.21}
+\contentsline {section}{\tocsection {}{22}{Binary quartic forms; bounded average rank of elliptic curves \\ by Arul Shankar (1/2)}}{32}{section.22}
+\contentsline {section}{\tocsection {}{23}{Selmer groups and heuristics (1/2)\\ by Bjorn Poonen}}{33}{section.23}
+\contentsline {section}{\tocsection {}{24}{Rational points on curves\\by Michael Stoll}}{34}{section.24}
+\contentsline {section}{\tocsection {}{25}{Problem Set (4/7)}}{35}{section.25}
+\contentsline {section}{\tocsection {}{26}{Binary quartic forms; bounded average rank of elliptic curves \\ by Arul Shankar (2/2)}}{36}{section.26}
+\contentsline {section}{\tocsection {}{27}{Coregular spaces and genus one curves \\by Wei Ho}}{37}{section.27}
+\contentsline {section}{\tocsection {}{28}{Arithmetic invariant theory and hyperelliptic curves (1/2)\\ by Benedict Gross}}{38}{section.28}
+\contentsline {section}{\tocsection {}{29}{Problem Set (5/7)}}{39}{section.29}
+\contentsline {section}{\tocsection {}{30}{Applications to the Birch and Swinnerton-Dyer conjecture\\ by Manjul Bhargava}}{40}{section.30}
+\contentsline {section}{\tocsection {}{31}{Selmer groups and heuristics (2/2) \\by Bjorn Poonen}}{41}{section.31}
+\contentsline {section}{\tocsection {}{32}{Arithmetic invariant theory and hyperelliptic curves (2/2)\\ by Benedict Gross}}{42}{section.32}
+\contentsline {section}{\tocsection {}{33}{Problem Set (6/7)}}{43}{section.33}
+\contentsline {section}{\tocsection {}{34}{Chabauty methods and hyperelliptic curves\\ by Bjorn Poonen}}{44}{section.34}
+\contentsline {section}{\tocsection {}{35}{Topological and algebraic geometry method over function fields (1/2) \\ by Jordan Ellenberg}}{45}{section.35}
+\contentsline {section}{\tocsection {}{36}{Counting methods over global fields\\ by Jerry Wang}}{46}{section.36}
+\contentsline {section}{\tocsection {}{37}{Problem Set (7/7) }}{47}{section.37}
+\contentsline {section}{\tocsection {}{38}{The Chabauty method and symmetric powers of curves \\ by Jennifer Park}}{48}{section.38}
+\contentsline {section}{\tocsection {}{39}{Topological and algebraic geometry methods over function fields (2/2)\\ by Jordan Ellenberg}}{49}{section.39}
+\contentsline {section}{\tocsection {}{40}{Future perspectives\\ by Manjul Bhargava}}{50}{section.40}

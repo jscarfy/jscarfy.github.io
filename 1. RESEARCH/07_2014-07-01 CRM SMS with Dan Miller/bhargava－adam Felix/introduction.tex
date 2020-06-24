@@ -1,0 +1,96 @@
+\chapter{Introduction and perspective:  Counting Arithmetic Objects \\ Manjul Bhargava}\label{ch:1}
+
+\noindent \underline{\textbf{Question}}:  Given a class $\mathscr{C}$ of objects of arithmetic interest, how many objects are there in $\mathscr{C}$, up to $\sim$ (isomorphism), have bounded invariants?
+\begin{examples}
+{\ }
+\begin{enumerate}[\upshape (\alph{enumi})]
+\item $\mathscr{C}$:  Number fields of a given degree.  \textbf{Invariants}:  Discriminant of the number field.
+\item $\mathscr{C}$:  Class group elements of number fields of a given degree.  \textbf{Invariants}:  Discriminant of the number field.
+\item $\mathscr{C}$:  Rational points on some family of curves.  \textbf{Invariants}:  Coefficients of the equation defining the curve.
+\item $\mathscr{C}$:  Elliptic curves in some family, where each elliptic curve is weighted by rank.  \textbf{Invariants}:  Coefficients of the equation defining the curve.
+\item $\mathscr{C}$:  Fix $n \in \mathbb{N}$:  $n$-Selmer group elements of Jacobians of curves in some family.  \textbf{Invariants}:  Coefficients of the equation defining the curve.
+\end{enumerate}
+\end{examples}
+Given such a class of objects of arithmetic interest, how many are there with respect to their basic invariants?  How are they distributed with respect to their basic invariants?  Beyond the case of degree $2$ number fields and genus $0$ curves, little was known at beginning of the 20\textsuperscript{th} century.\\
+\indent \underline{\textbf{Strategy}}:
+\begin{equation*}
+\{\text{Objects in } \mathscr{C}\}/\sim \quad \xrightarrow{injection} \quad G(\mathbb{Z})\setminus V(\mathbb{Z}),
+\end{equation*}
+where $G$ is an algebraic group and $V$ is a representation over $\mathbb{Z}$.  We would like this map to correspond to
+\begin{equation*}
+\text{invariants of objects} \to \text{fundamental polynomial invariants of action of } G \text{ on } V.
+\end{equation*}
+(Good choices of such maps often come from algebraic geometry but must work out the theory over $\mathbb{Z}$.)
+\begin{examples}
+{\ }
+
+\begin{enumerate}[\upshape (\alph{enumi})]
+\item (Gau\ss{}, 1801)
+\begin{equation*}
+\{\text{ideal classes of (orders in) quadratic fields}\}/\sim \quad \xrightarrow{injection} \quad \SL_{2}(\mathbb{Z})\setminus \{\text{integer binary quadratic forms} ax^{2}+bxy+cy^{2}\}.
+\end{equation*}
+Here the discriminant maps to $b^{2}-4ac$, which is called the \textbf{discriminant} of the binary quadratic field or the \textbf{unique polynomial invariant}.  Note that $I=\langle \alpha,\beta\rangle$ maps to $\frac{N(\alpha x+\beta y)}{N(I)}$, where $N$ is the norm associated to the field.  The above map is one-to-one if we restrict the map to non-square discriminants.  \textcolor{red}{(Put this in diagram form.)}
+\item (Levi 1920's, Delone-Faddeev 1960's)
+\begin{equation*}
+\{\text{cubic rings}\}/\sim \quad \xrightarrow{\text{injection (actually isomorphism)}} \quad \GL_{2}(\mathbb{Z})\setminus\{\text{integer binary cubic forms} ax^{3}+bx^{2}y+cxy^{2}+dy^{3}\}.
+\end{equation*}
+Here the discriminant (of a cubic ring \textcolor{red}{(to be defined later)}) maps to the discriminant of the right-hand side.  This is also known as \textbf{unique polynomial invariant}.  In the case of the integer binary cubic form $ax^{3}+bx^{2}y+cxy^{2}+dy^{3}$, the discriminant is $b^{2}c^{2}-4ac^{3}-4b^{3}d-27a^{2}d^{2}+18abcd$.  Note that $R=\langle 1,\alpha,\beta\rangle$ maps to $\sqrt{\frac{\disc(\alpha x+\beta y)}{\disc{R}}}=[R:\mathbb{Z}[\alpha x+\beta y]]$, where $\disc(\alpha)=\disc(\mathbb{Z}[\alpha])$.
+\item $\{\text{quartic fields}\}/\sim \quad \xrightarrow{}\qquad \disc \to \disc=$unique polynomial invariant.
+\item $\{\text{quintic fields}\}/\sim \quad \xrightarrow{}\qquad \disc \to \disc=$unique polynomial invariant.
+\item (BSD)
+\begin{align*}
+\{\sigma \in E(\mathbb{Q}):2E(\mathbb{Q}): E \text{ is an elliptic curve of the form} E_{A,B}:y^{2}=x^{3}+Ax+B, A,B \in \mathbb{Z}\} \quad &\xrightarrow{injection} \sel_{2}(E) \\
+&\xrightarrow{injection} \quad \GL_{2}(\mathbb{Z}) \setminus \{\text{integer binary quartic forms}\}.
+\end{align*}
+Here the invariants $A$ and $B$ map to $I$ and $J$, some fundamental invariants for binary quartic of degrees $2$ and $3$.
+\item (Cremona-Fisher-Stoll):  Let $n \in \{3,4,5\}$.  Then, consider
+\begin{equation*}
+\{\sigma \in E(\mathbb{Q})/nE(\mathbb{Q}): E=E_{A,B}\} \quad \xrightarrow{injection} \dots
+\end{equation*}
+Here the invariants $A$ and $B$ map to a similar $I$ and $J$ as discussed above.
+\item
+\begin{equation*}
+\{\text{rational points on odd hyperelliptic curves of the form} y^{2}=x^{2g+1}+a_{1}x^{2g}+\dots+a_{2g+1}\} \quad \xrightarrow{}\quad \SO_{2g+1}(\mathbb{Z})\setminus \sym^{2}(\mathbb{Z}^{2g+1}).
+\end{equation*}
+Here $a_{i} \in \mathbb{Z}$ and the invariants exactly correspond.
+\item
+\begin{equation*}
+\{\text{rational points on general even degree hyperelliptic curves of the form} z^{2}=a_{0}x^{2g+2}+a_{1}x^{2g+1}+\dots+a_{2g+1}\} \quad \xrightarrow{} \quad \SO_{2g+1}(\mathbb{Z})\setminus \sym^{2}(\mathbb{Z}^{2g+1}).
+\end{equation*}
+Here $a_{i} \in \mathbb{Z}$ and the invariants exactly correspond.
+\end{enumerate}
+\end{examples}
+There are many more examples.\\
+\indent \underline{\textbf{Question}}:  How many orbits of $G(\mathbb{Z})$ on $V(\mathbb{Z})$ are there having bounded invariants?  Gau\ss{} worked out Case 1.  He showed:  let $h(D)$ be the number of $\SL_{2}(\mathbb{Z})$-orbits of integer binary quadratic forms of discriminant $D$.  Then,
+\begin{theorem}[Gau\ss{}, Lipschitz, Mertens]
+\begin{equation*}
+\sum_{0 < -D < X} h(D) \sim \frac{\pi}{18}X^{\frac{3}{2}}.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}[\upshape (\arabic{enumi})]
+\item Gau\ss shows that every integer binary quadratic form $ax^{2}+bxy+cy^{2}$ with $D=b^{2}-4ac < 0$ has a unique $\gal_{2}(\mathbb{Z})$-equivalent form satisfying $|b| < a  \le c$ or $0 < b=a \le c$.
+\item By the geometry of numbers, we have
+\begin{equation*}
+\sum_{0 < -D < X} h(D) \sim \#\{(a,b,c): 0 < 4ac-b^{2} < X, |b| < a < c\}
+\end{equation*}
+Gau\ss{} conjectured that this should be the volume of this region.  Gau\ss{} found the integral of a related region.  The rest was made rigorous by Lipschitz and Mertens.  We note that this is a lot trickier.  For example, the region
+\begin{equation*}
+\#\{(a,b,c): 0 \le 4ac-b^{2} < X, |b| < a \le c\}
+\end{equation*}
+has infinitely many points.  \textcolor{red}{(See the picture)}.\\
+\indent There are a few ways to show that this volume conjecture works:
+\begin{enumerate}[\upshape (\arabic{enumii})]
+\item Explicitly evaluate it as a triple summation $\sum_{a}\sum_{b}\sum_{c}$, approximation by integral.  Keep track of the error term (Exercise:  Lipschitz, Mertens)
+\item Davenport developed some general principles for bounded regions.  Davenport used a principle to reprove count of the binary quadratics and extended the argument to a count of binary cubic forms.  This requires knowing explicit inequalities for the region.
+\item Zeta function and $L$-function methods:  for binary quadratic forms, Siegel, Goldfeld-Hoffstein, Shintani, Datskovsky,... where able to use these methods.  They did not need explicit bounds.  However, this method is limited as it becomes difficult if the degree of the objects one is studying becomes complicated.
+\item Hybrid methods:  average over a compact continuum of fundamental domains.  Some advantages of this method are that is does not need explicit inequalities but one can still use elementary geometry of numbers.
+\end{enumerate}
+Works on above mentioned 10 representations gives a count of cubic, quartic and quintic fields boundedness of average rank of elliptic curves, hyperelliptic curves with few rational points.\\
+\indent \underline{\textbf{Question}}  What if $\mathbb{Q}$ is replaced by another base field?  a number field, function field?
+\begin{enumerate}[\upshape (\alph{enumii})]
+\item Function field:  we can use algebraic geometry and topological methods.  De Jong worked on boundedness of average rank 
+\item Generic method of (4) above.  Ellenberg has many results of this type.
+\end{enumerate}
+\end{enumerate}
+\end{proof}

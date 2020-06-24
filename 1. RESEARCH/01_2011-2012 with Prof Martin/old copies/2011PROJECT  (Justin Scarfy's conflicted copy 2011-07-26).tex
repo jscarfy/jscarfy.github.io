@@ -1,0 +1,2484 @@
+% a pdf-latex file for a 38 page document
+% also works with simple LaTeX, but prefers pdf-latex
+
+\documentclass[12pt]{article}
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+    \pdffalse       %   we are not running PDFLaTeX
+\else
+    \pdfoutput=1    %   we are running PDFLaTeX
+    \pdftrue
+\fi
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsrefs}
+%\usepackage[french]{babel}
+%\usepackage{/home/cromwell/.latex/cyrillic} 
+
+
+
+\ifpdf
+    \usepackage[pdftex]{graphicx}
+    \pdfcompresslevel=9
+    \usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=blue,
+        citecolor=blue, urlcolor=blue]{hyperref}
+    
+\else
+    \usepackage{graphicx}
+    \usepackage{hyperref}
+\fi
+
+    \setlength{\textwidth}{6.3in}
+    
+    \setlength{\textheight}{8.7in}
+    \setlength{\topmargin}{0pt}
+    \setlength{\headsep}{0pt}
+    \setlength{\headheight}{0pt}
+    \setlength{\oddsidemargin}{0pt}
+    \setlength{\evensidemargin}{0pt}
+
+    \makeatletter
+    \newfont{\footsc}{cmcsc10 at 8truept}
+    \newfont{\footbf}{cmbx10 at 8truept}
+    \newfont{\footrm}{cmr10 at 10truept}
+  
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% The further structure of the front page need not be exactly as below,
+    %% but the header must contain the names and addresses of the authors
+    %% as well as the submission and acceptance dates.
+
+    \title{Complete Annotated Bibliography of Work Related to Comparative Prime-Number Theory}
+
+    \author{Greg Martin, Justin Scarfy\thanks{The second of us, an undergraduate student at the University of British Columbia, is  very grateful for Professor Greg Martin's  introduction to this fascinating topic, his guidance and continues encouragement on this project.}\\
+    \small Department of Mathematics\\[-0.8ex]
+    \small The University of British Columbia, Vancouver, Canada\\[-0.8ex]}
+
+    \date{\small 
+ August 01, 2011\\
+    \small MR Subject Classifications: 11N13 (11Y35)}
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\fp}[1]{\{ #1 \}}
+\newcommand{\h}{\frac 1 2}
+\renewcommand{\mod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\Li}{\rm Li}
+\newcommand{\li}{\rm li}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\Prob}{{\mathbb P}}
+\newcommand{\bigO}[1]{{\cal O}\left(#1\right)}
+\newcommand{\littleo}[1]{o\left(#1\right)}
+\newcommand{\GF}[1]{{\mathbb F}_{#1}}
+\newcommand{\Bhg}[2]{\ensuremath{B^\ast_{#1}{[}#2{]}}}
+\newcommand{\Bh}[1]{\ensuremath{B_{#1}}}
+\newcommand{\cA}{{\cal A}}
+\newcommand{\cB}{{\cal B}}
+\newcommand{\cK}{{\cal K}}
+\newcommand{\Ruzsa}[3]{{\tt{Ruzsa}}(#1,#2,#3)}
+\newcommand{\Bose}[4]{{\tt{Bose}}_{#1}(#2,#3,#4)}
+\newcommand{\Singer}[4]{{\tt{Singer}}_{#1}(#2,#3,#4)}
+
+
+\newcommand{\annotation}[1]{\begin{quotation} \noindent #1 \end{quotation}}
+\newcommand{\authorsabstract}[1]{\begin{quotation} \noindent {\bf Author's abstract:} ``#1'' \end{quotation}}
+\newcommand{\mathreview}[2]{}%{\begin{quotation} \noindent {\bf Math Review (by #1):} #2 \end{quotation}}
+\newcommand{\articlecites}[1]{\begin{quotation} \noindent This article cites #1. \end{quotation}}
+
+
+\DeclareMathOperator{\ind}{ind}
+
+\newcommand{\newparagraph}{\linebreak \indent}
+%\newcommand{\MR}[1]{\href{http://www.ams.org/mathscinet-getitem?mr=#1}{{\bf MR~#1}}}
+
+\numberwithin{equation}{section} %sets equation numbers <chapter>.<section>.<index>
+
+
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{cnj}[thm]{Conjecture}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{qst}[thm]{Question}
+\newtheorem{exr}[thm]{Exercise}
+\newtheorem{xmp}[thm]{Example}
+\newtheorem{pbm}[thm]{Problem}
+
+\numberwithin{thm}{section} %sets equation numbers <chapter>.<section>.<index>
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Comparative prime-number theory is the study of the {\em{discrepancies}} of distributions when we compare the number of primes in different residue classes. This work presents a comprehensive list of the problems being investigated in comparative prime-number theory, their generalizations, and an extensive annotated and hyperlink bibliography of both historical and current progresses. 
+\end{abstract}
+
+%1. Introduction
+\section{Introduction}
+In the well-known letter between  Chebyshev and M. Fuss, dated 1853~\cite{1853.Chebyshev}, the former indicated that (but without proof):
+For a positive continuous decreasing function $f$, the series
+\begin{equation} \label{eq.cheb} %eq.cheb
+\sum_{p \; {\rm {odd\;prime}}} (-1)^{\frac {(p+1)}{2}} f(p): = f(3)-f(5)+f(7)+f(11)-f(13)-f(17)+\hdots
+\end{equation}
+diverges. In particular, when $f(x)=e^{-10x}$, series \ref{eq.cheb} tends to infinity.
+The significance of this assertion, turns out to be that it is  equivalent to say that there {\em{should be}} more primes in the residue class 3 than  residue class 1 module 4.
+Hardy, Littlewood, and Landau in 1918 proved its equivalence with the problem concerning the function 
+%
+\begin{equation}%L
+L(s):= \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)^s} \; \; \; \; \; (s=\sigma + it)
+\end{equation}
+vanishes or not in the half-plane $\sigma > \h$. Necessity by Landau~\cite{1918.Landau.1}, the sufficiency by Hardy-Littlewood~\cite{1918.Littlewood} and simpler by Landau~\cite{1918.Landau.2} again.
+However, Littlewood~\cite{1918.Littlewood} in 1918 disproved this and showed that the number of primes in residue class 3 module 4 and the number of primes in residue class 1 module 4 "race" and they take turns to take the lead.  
+On the other hand, the number of primes in residue class 1 only take the lead in the race a "negligible" amount of time, and this phenomenal is known as {\bf Chebyshev's bias}.  
+To illustrate precisely what Littewood had prove and further developments on this topic, we need the aid of the following notations:
+
+%Another, the existence of a sequence $x_1 < x_2 < x_3 < \hdots$, such that
+%\begin{equation}
+%\frac{\pi(x_\nu; 4, 3)- \pi(x_\nu; 4, 1)}{\frac{\sqrt {x_\nu}}{\log x_\nu}} \rightarrow 1
+%\end{equation}
+%, where $\pi(x, k, l)$ denotes the was proved by Phragm\'en (REF) then simpler by Landau (REF) who extended it to general $k$
+%Hardy and Littlewood in 1915
+%
+%Littlewood 
+%
+%\begin{equation}
+%\frac{}{}
+%\end{equation}
+%
+%If for a $k$ that satisfies the Haselgrove condition and
+%\begin{equation}
+%T> \max\bigg(e_5(c_3k), e_2\Big(\frac{1}{A(k)^3}\Big)\bigg)
+%\end{equation}
+%with a sufficiently large $c_3$ then for all $\gcd{l, k}=1$, both the inequalities
+%
+%\begin{align}
+%\max_{e_1(\log_3^{\frac{1}{130}}T)}\frac{\delta_\pi(x; k, 1, l)}{\frac{\sqrt x}{\log x}} &> \frac{1}{100}\log_5{T}\\
+%\min_{e_1(\log_3^{\frac{1}{130}}T)}\frac{\delta_\pi(x; k, 1, l)}{\frac{\sqrt x}{\log x}} &<- \frac{1}{100}\log_5{T}
+%\end{align}
+%hold (i.e. {\emph{for $k|24$ or for the Davies-values unconditionally}}). This means in a little weakened form that for $T$'s with (EREF) the interval 
+%\begin{equation}
+%e_1(\log_3^{\frac{1}{130}}T)\leq x \leq T
+%\end{equation}
+%certainly contains values $x'$ and $x''$ with
+%\begin{align}
+%\delta_\pi(x', k, 1, l) &>\frac{1}{100}\frac{\sqrt{x'}}{\log{x'}}\log_5{x'}\\
+%\delta_\pi(x'', k, 1, l)&<-\frac{1}{100}\frac{\sqrt{x''}}{\log{x''}}\log_5{x''}
+%\end{align}
+%
+\newpage
+%2. Terminology
+\section{Terminology}\label{sec.Terminology}
+Throughout this paper, $p$ will always be an {\bf{odd} prime}.
+The von Mangoldt Lambda function $\Lambda: \Z \rightarrow \R$ is defined by:
+\begin{equation}
+\Lambda(n):= \begin{cases}  \log{p} &\mbox{if } n=p^k\\
+                                                      0 &\mbox {otherwise} \end{cases}
+\end{equation}
+
+We define:
+%
+\begin{align}
+\pi(x; k, l) :=& \sum_{\substack {p\leq x \\ p\equiv l \mod k}} 1\\
+\psi(x; k, l) :=& \sum_{\substack {n\leq x \\ n\equiv l \mod k}} \Lambda(n) \\
+\vartheta(x; k, l) :=& \sum_{\substack {p\leq x \\ p\equiv l \mod k}} {\log p}  \\
+\Pi(x; k, l) :=& \sum_{\substack {n\leq x \\ n\equiv l \mod k}} \frac {\Lambda(n)}{ \log n}
+\end{align}
+and 
+%
+\begin{align}
+\delta_\pi(x; k, l_1, l_2):=& \pi(x; k, l_1)-\pi(x; k, l_2)\\
+\delta_\psi(x; k, l_1, l_2):=&\psi(x; k, l_1)-\psi(x; k, l_2)\\
+\delta_\vartheta(x; k, l_1, l_2):=&\vartheta(x; k, l_1) -\vartheta(x; k, l_2)  \\
+\delta_\Pi(x; k, l_1, l_2):=&\Pi(x; k, l_1) -\Pi(x; k, l_2) 
+\end{align}
+further we define:
+%
+\begin{equation}
+w_f(T; k, l_1, l_2): = \sum_{\substack{\delta_f(x; k, l_1, l_2)=0\\  0<x\leq T}} 1 \;\;\;\;\;\;{\rm for}\;\;\;\;\;\; f=\pi, \psi, \vartheta, \Pi
+\end{equation}
+%
+\begin{equation}
+\Li(x):=\int_2^{x}\frac{du}{\log u}
+\end{equation}
+%
+\begin{xmp}
+Littlewood's result (1918), in the above notations, reads $\delta_\pi(x; 4, 3, 1)$ switches its signs infinitely many times.
+\end{xmp}
+Since Chebyshev's original paper dealt with the case where each term in the sum contains a factor of $e^{-10x}$, we would able to form the mutatis mutadis definitions if we were to multiply a $e^{-nr}$ term to each term in the above sums: replace 
+\begin{align}
+\psi(x; k, l) \; \; \; \; \; {\rm by} \; \; \; &\sum_{n\equiv l \mod k} \Lambda(n)e^{-nr} \\
+\Pi(x; k, l) \; \; \; \; \; {\rm by}  \; \; \; &\sum_{n\equiv l \mod k}\frac{ \Lambda(n)}{\log n}e^{-nr} \\
+\vartheta(x; k, l) \; \; \; \; \; {\rm by} \; \; \; &\sum_{n\equiv l \mod k} \log{p} e^{-nr} \\
+\pi(x; k, l) \; \; \; \; \; {\rm by} \; \; \;  &\sum_{n\equiv l \mod k} e^{-nr}\\
+{\Li}(x) \; \; \; \; {\rm by} \; \; \;  &\int_2 ^\infty \frac{e^{-yr}}{\log y}\, dy 
+\end{align}
+Thus the differences $\delta_f$'s are replaced by $\Delta_F$'s:
+\begin{align}
+\Delta_\psi(r; k, l_1, l_2):=&\sum_{n\equiv l_1 \mod k} \Lambda(n)e^{-nr} - \sum_{n\equiv l_2 \mod k} \Lambda(n)e^{-nr}\\
+\Delta_\Pi(r; k, l_1, l_2):=&\sum_{n\equiv l_1 \mod k}\frac{ \Lambda(n)}{\log n}e^{-nr} - \sum_{n\equiv l_2 \mod k}\frac{ \Lambda(n)}{\log n}e^{-nr} \\
+\Delta_\vartheta(r; k, l_1, l_2):=&\sum_{n\equiv l_1 \mod k} \log{p} e^{-nr}- \sum_{n\equiv l_2 \mod k} \log{p} e^{-nr} \\
+\Delta_\pi(r; k, l_1, l_2):=& \sum_{n\equiv l_1 \mod k} e^{-nr} - \sum_{n\equiv l_2 \mod k} e^{-nr}  
+\end{align}
+and  $w_f(T; k, l_1, l_2)$ by $W_F(T; k, l_1, l_2)$, where
+\begin{equation}
+W_F(T; k, l_1, l_2): = \sum_{\substack{\Delta_F(x; k, l_1, l_2)=0\\ {\rm for\; } 0<x\leq T}} 1
+\end{equation}
+for $F= \psi, \Pi, \vartheta, \pi$
+
+\begin{dfn}
+\begin{equation}
+\varepsilon(k; p, l_1, l_2):=\begin{cases}
+1 &{\rm if} \;\;\;p \equiv l_1 \mod k \\
+-1 &{\rm if}\;\;\; p \equiv l_2 \mod k \\
+0 & {\rm otherwise}
+\end{cases} 
+\end{equation}
+\end{dfn}
+%3. conditions
+\section{Conditions for Some Theorems to hold}
+\begin{cnj}
+[Haselgrove condition]\label{HC}
+For a number $k$, there is an $1 \geq A(k) > 0 $ such that no $L(s, \chi)$ belonging to $\mod k$ vanishes for $0 < \sigma < 1$, $|t| \leq A(k)$. $(s= \sigma + it)$. Further $e_1(x)=e^x$, $e_\nu(x)=e_{\nu -1}(e_1(x))$, $\log_1(x)= \log(x)$, $\log_{\nu}=\log_{\nu -1}(\log x)$
+\end{cnj}
+
+
+\begin{cnj}[Riemann-Piltz]\label{RP}
+No $L(s, \chi)$ functions vanish in the half plane $\sigma > \h$, $(s= \sigma + it)$
+\end{cnj}
+
+
+
+\newpage
+%
+\section{Problems}\label{sec.Problems}
+%P 01
+\begin{pbm}
+For which $(l_1, l_2)$-paris with $l_1\neq l_2$ does the function 
+$$
+\pi(x; k, l_1)-\pi(x; k, l_2) 
+$$
+changes its sign infinitely often?
+\end{pbm}
+
+%P 02
+\begin{pbm}
+Given $\epsilon >0$, $l_1 \neq l_2$, do there exist two sequences 
+\begin{align*}
+x_1&<x_2<x_3\hdots \rightarrow  \infty\\
+y_1&<y_2<y_3\hdots \rightarrow  \infty
+\end{align*}
+such that
+\begin{align*}
+\pi(x_\nu ; k, l_1)-\pi(x_\nu ; k,  l_2) &> x_\nu ^ {\frac 1 2 - \epsilon} \\
+\pi(y_\nu ; k, l_1)-\pi(y_\nu ; k,  l_2) &< -y_\nu ^ {\frac 1 2 - \epsilon}
+\end{align*}
+\end{pbm}
+
+%P 03
+\begin{pbm}
+Given $\epsilon >0$ small then for what function $h_k(T)>0$ can we be sure that for each $(l_1, l_2)$-pairs with $l_1 \neq l_2$ and $T\geq 1$ both the inequalities 
+\begin{align*}
+\max_{T \leq x \leq T+ h_k(T)}\Big\{ \pi(x ; k, l_1)-\pi(x; k,  l_2) \Big\}  &> T^ {\frac 1 2 - \epsilon} \\
+\min_{T \leq x  \leq T+ h_k(T)}\Big\{ \pi(x ; k, l_1)-\pi(x; k,  l_2) \Big\}  &< -T^ {\frac 1 2 - \epsilon} 
+\end{align*}
+hold?
+\end{pbm}
+
+%P 04
+\begin{pbm}
+
+For which function $g_k(T)>0$ can we assert that for each $(l_1, l_2)$-pairs with $l_1 \neq l_2$ and $T \geq 1$, all functions
+$$
+\pi(x ; k, l_1)-\pi(x; k,  l_2) 
+$$
+change sign at least once in every interval 
+$$
+T\leq x \leq T+ g_k(T)
+$$
+\end{pbm}
+
+%P 05
+\begin{pbm}
+For which function $a(k)$ can we asssert that for each $(l_1, l_2)$-pair with $l_1 \neq l_2$, all functions in
+$$
+\pi(x ; k, l_1)-\pi(x ; k,  l_2) 
+$$
+vanish at least some points in
+$$
+1 \leq x \leq a(k)
+$$
+\end{pbm}
+
+%P 06
+\begin{pbm}
+Let  $W_k(T; l_1, l_2)$ denote the number of sign changes of $\pi(x; k, l_1)-\pi(x; k, l_2)$, then what is asymptotical behaviour of $W_k(T; l_1, l_2)$ as $T \rightarrow \infty$?
+\end{pbm}
+
+%P 07
+\begin{pbm}
+For a fixed $(l_1, l_2)$-pair with $l_1 \neq l_2$, what is the asymptotic behaviour of $N_{l_1 l_2}(Y)$ as $Y \rightarrow \infty$, where $N_{l_1 l_2}(Y)$ denotes the number of integers $m \leq Y$ with 
+$$
+\pi(m ; k, l_1) \geq \pi(m ; k,  l_2)
+$$
+\end{pbm}
+
+%P 08
+\begin{pbm}[Race-problem of Shanks-R\`enyi]
+For each permutations 
+$$
+l_1, l_2, l_3, \hdots, l_{\varphi(k)}
+$$
+of the reduced set of residue classes mod $k$, does there exist infitely many integers $m$'s with
+$$
+\pi(m; k, l_1) < \pi(m; k, l_2) < \pi(m; k, l_3) < \hdots  < \pi(m; k, l_{\varphi(k)})
+$$
+\end{pbm}
+
+%P 09
+\begin{pbm}\label{P9}
+Does there exist infinitely many integers $m_\nu$'s such that for $j=1, 2, 3, \hdots \varphi(k)$ simultaneously 
+$$
+\pi(m_\nu, k, l_j)> \frac {\Li(m_\nu)}{\varphi(k)} \; \; ?
+$$
+\end{pbm}
+
+%P 10
+\begin{pbm}
+If the answer to \ref{P9} is positive, then what are the distribution-properties of the $m_\nu$ sequence?
+\end{pbm}
+
+One can expect that there are "more" primes in the residue-class $l_1\mod k$ than $l_2 \mod k$ if and only if the number of incongruent solutions of the congruence
+\begin{equation}\label{l_1}
+x^2 \equiv l_1 \mod k
+\end{equation} 
+is less than that of the congruence
+\begin{equation}\label{l_2}
+x^2 \equiv l_2 \mod k
+\end{equation} 
+
+
+%-----------------
+%P 11
+\begin{pbm}
+For which $(l_1, l_2)$-paris with the number of solutions of \eqref{l_1} and \eqref{l_2} being equal, does the function 
+\begin{equation}
+\sum_{p\equiv l_1 \mod k} e^{-p\Lambda(n)} - \sum_{p\equiv l_2 \mod k} e^{-p\Lambda(n)}
+\end{equation}
+changes its sign infinitely often?
+\end{pbm}
+
+%P 12
+\begin{pbm}
+Given $\epsilon >0$, and the number of solutions of \eqref{l_1} and \eqref{l_2} equal, do there exist two sequences 
+\begin{align*}
+r'_1&>r'_2>r'_3\hdots \rightarrow 0\\
+r''_1&>r''_2>r''_3\hdots \rightarrow 0
+\end{align*}
+such that both
+\begin{align*}
+\sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu} &> \bigg(\frac 1{r'_v}\bigg)^{\h -\epsilon}\\
+\sum_{ p\equiv l_1\mod k} e^{-p r''_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r''_\nu} &<- \bigg(\frac 1{r''_v}\bigg)^{\h -\epsilon}
+\end{align*}
+hold?
+\end{pbm}
+
+%P 13
+\begin{pbm}
+Given $\epsilon >0$ small then for what function $h_k( \frac{1}{T})>0$ can we be sure that for each $(l_1, l_2)$-pari with the number of solutions of \eqref{l_1} and \eqref{l_2} being equal both the inequalities 
+\begin{align*}
+\max_{\frac{1}{T}<x<\frac{1}{T}+h_k(T)} \Bigg\{ \sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu} \Bigg\}&>\bigg(\frac{1}{T}\bigg)^{\h-\epsilon} \\
+\min_{\frac{1}{T}<x<\frac{1}{T}+h_k(T)} \Bigg\{ \sum_{ p\equiv l_1\mod k} e^{-p r''_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r''_\nu} \Bigg\}&<- \bigg(\frac 1 T\bigg)^{\h -\epsilon}
+\end{align*}
+hold?
+\end{pbm}
+
+%P 14
+\begin{pbm}
+For which function $g_k(T)>0$ can we assert that for each $(l_1, l_2)$-pairs with the number of solutions of \eqref{l_1} and \eqref{l_2} equal, all functions
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu}
+$$
+change sign at least once in every interval 
+$$
+T\leq x \leq T+ g_k(T)
+$$
+\end{pbm}
+
+%P 15
+\begin{pbm}
+For which function $a(k)$ can we asssert that for each $(l_1, l_2)$-pair withwith the number of solutions of \eqref{l_1} and \eqref{l_2} equal, all functions in
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  - \sum_{p\equiv l_2\mod k} e^{-p r}
+$$
+vanish at least some points in
+$$
+1 \leq x \leq a(k)
+$$
+\end{pbm}
+
+%P 16
+\begin{pbm}
+Let  $W_k(T; l_1, l_2)$ denote the number of sign changes of 
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  - \sum_{p\equiv l_2\mod k} e^{-p r}
+$$
+Then what is asymptotical behaviour of $W_k(T; l_1, l_2)$ as $T \rightarrow \infty$?
+\end{pbm}
+
+%P 17
+\begin{pbm}
+For a fixed $(l_1, l_2)$-pair with with the number of solutions of \eqref{l_1} and \eqref{l_2} equal, what is the asymptotic behaviour of $N_{l_1 l_2}(Y)$ as $Y \rightarrow \infty$, where $N_{l_1 l_2}(Y)$ denotes the number of integers $r \leq Y$ with 
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  \geq \sum_{p\equiv l_2\mod k} e^{-p r}$$
+\end{pbm}
+
+%P 18
+\begin{pbm}[Race-problem of Shanks-R\`enyi]
+For each permutations 
+$$
+l_1, l_2, l_3, \hdots, l_{\varphi(k)}
+$$
+of the reduced set of residue classes mod $k$, does there exist infitely many integers $r$'s with
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  < \sum_{p\equiv l_2\mod k} e^{-p r} < \sum_{ p\equiv l_3\mod k} e^{-p r} <\hdots < \sum_{p\equiv l_{\varphi} \mod k} e^{-p r}
+$$
+\end{pbm}
+
+%P 19
+\begin{pbm}\label{P19}
+Does there exist infinitely many integers $r_\nu$'s such that for $j=1, 2, 3, \hdots,\varphi(k)$ simultaneously 
+$$
+\sum_{ p\equiv l_j\mod k} e^{-p r_\nu} > \frac{1}{\varphi(k)} \sum_{n=2}^{\infty} \frac{e^{nr}}{\log n} 
+$$
+\end{pbm}
+
+%P 20
+\begin{pbm}
+If the answer to \ref{P19} is positive, then what are the distribution-properties of the $r_\nu$ sequence?
+\end{pbm}
+
+
+By defining 
+$$
+\psi(x; k, l):= \sum _{\substack{n\leq x \\ n \equiv l \mod k}} \Lambda(n)
+$$
+%%%%%%
+
+%P 5.21
+\begin{pbm}
+For which $(l_1, l_2)$-paris with $l_1\neq l_2$ does the function 
+$$
+\psi(x; k, l_1)-\psi(x; k, l_2) 
+$$
+changes its sign infinitely often?
+\end{pbm}
+
+%P 5.22
+\begin{pbm}
+Given $\epsilon >0$, $l_1 \neq l_2$, do there exist two sequences 
+\begin{align*}
+x_1&<x_2<x_3\hdots \rightarrow  \infty\\
+y_1&<y_2<y_3\hdots \rightarrow  \infty
+\end{align*}
+such that
+\begin{align*}
+\psi(x_\nu ; k, l_1)-\psi(x_\nu ; k,  l_2) &> x_\nu ^ {\frac 1 2 - \epsilon} \\
+\psi(y_\nu ; k, l_1)-\psi(y_\nu ; k,  l_2) &< -y_\nu ^ {\frac 1 2 - \epsilon}
+\end{align*}
+\end{pbm}
+
+%P 5.23
+\begin{pbm}
+Given $\epsilon >0$ small then for what function $h_k(T)>0$ can we be sure that for each $(l_1, l_2)$-pairs with $l_1 \neq l_2$ and $T\geq 1$ both the inequalities 
+\begin{align*}
+\max_{T \leq x \leq T+ h_k(T)}\Big\{ \psi(x ; k, l_1)-\psi(x; k,  l_2) \Big\}  &> T^ {\frac 1 2 - \epsilon} \\
+\min_{T \leq x  \leq T+ h_k(T)}\Big\{ \psi(x ; k, l_1)-\psi(x; k,  l_2) \Big\}  &< -T^ {\frac 1 2 - \epsilon} 
+\end{align*}
+hold?
+\end{pbm}
+
+%P 24
+\begin{pbm}
+
+For which function $g_k(T)>0$ can we assert that for each $(l_1, l_2)$-pairs with $l_1 \neq l_2$ and $T \geq 1$, all functions
+$$
+\psi(x ; k, l_1)-\psi(x; k,  l_2) 
+$$
+change sign at least once in every interval 
+$$
+T\leq x \leq T+ g_k(T)
+$$
+\end{pbm}
+
+%P 5.25
+\begin{pbm}
+For which function $a(k)$ can we assert that for each $(l_1, l_2)$-pair with $l_1 \neq l_2$, all functions in
+$$
+\psi(x ; k, l_1)-\psi(x ; k,  l_2) 
+$$
+vanish at least some points in
+$$
+1 \leq x \leq a(k)
+$$
+\end{pbm}
+
+%P 5.26
+\begin{pbm}
+Let  $W_k(T; l_1, l_2)$ denote the number of sign changes of $\psi(x; k, l_1)-\psi(x; k, l_2)$, then what is asymptotical behaviour of $W_k(T; l_1, l_2)$ as $T \rightarrow \infty$?
+\end{pbm}
+
+%P 5.27
+\begin{pbm}
+For a fixed $(l_1, l_2)$-pair with $l_1 \neq l_2$, what is the asymptotic behaviour of $N_{l_1 l_2}(Y)$ as $Y \rightarrow \infty$, where $N_{l_1 l_2}(Y)$ denotes the number of integers $m \leq Y$ with 
+$$
+\psi(m ; k, l_1) \geq \psi(m ; k,  l_2)
+$$
+\end{pbm}
+
+%P 5.28
+\begin{pbm}[Race-problem of Shanks-R\`enyi]
+For each permutations 
+$$
+l_1, l_2, l_3, \hdots, l_{\varphi(k)}
+$$
+of the reduced set of residue classes mod $k$, does there exist infitely many integers $m$'s with
+$$
+\psi(m; k, l_1) < \psi(m; k, l_2) < \psi(m; k, l_3) < \hdots  < \psi(m; k, l_{\varphi(k)})
+$$
+\end{pbm}
+
+%P 5.29
+\begin{pbm}\label{P9}
+Does there exist infinitely many integers $m_\nu$'s such that for $j=1, 2, 3, \hdots \varphi(k)$ simultaneously 
+$$
+\psi(m_\nu, k, l_j)> \frac {\Li(m_\nu)}{\varphi(k)} \; \; ?
+$$
+\end{pbm}
+
+%P 5.30
+\begin{pbm}
+If the answer to \ref{P9} is positive, then what are the distribution-properties of the $m_\nu$ sequence?
+\end{pbm}
+
+One can expect that there are "more" primes in the residue-class $l_1\mod k$ than $l_2 \mod k$ if and only if the number of incongruent solutions of the congruence
+\begin{equation}\label{l_1}
+x^2 \equiv l_1 \mod k
+\end{equation} 
+is less than that of the congruence
+\begin{equation}\label{l_2}
+x^2 \equiv l_2 \mod k
+\end{equation} 
+
+
+%-----------------
+%P 5.31
+\begin{pbm}
+For which $(l_1, l_2)$-paris with the number of solutions of \eqref{l_1} and \eqref{l_2} being equal, does the function 
+\begin{equation}
+\sum_{p\equiv l_1 \mod k} e^{-p\Lambda(n)} - \sum_{p\equiv l_2 \mod k} e^{-p\Lambda(n)}
+\end{equation}
+changes its sign infinitely often?
+\end{pbm}
+
+%P 5.32
+\begin{pbm}
+Given $\epsilon >0$, and the number of solutions of \eqref{l_1} and \eqref{l_2} equal, do there exist two sequences 
+\begin{align*}
+r'_1&>r'_2>r'_3\hdots \rightarrow 0\\
+r''_1&>r''_2<r''_3\hdots \rightarrow 0
+\end{align*}
+such that both
+\begin{align*}
+\sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu} &> \bigg(\frac 1{r'_v}\bigg)^{\h -\epsilon}\\
+\sum_{ p\equiv l_1\mod k} e^{-p r''_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r''_\nu} &<- \bigg(\frac 1{r''_v}\bigg)^{\h -\epsilon}
+\end{align*}
+hold?
+\end{pbm}
+
+%P 5.33
+\begin{pbm}
+Given $\epsilon >0$ small then for what function $h_k( \frac{1}{T})>0$ can we be sure that for each $(l_1, l_2)$-pari with the number of solutions of \eqref{l_1} and \eqref{l_2} being equal both the inequalities 
+\begin{align*}
+\max_{\frac{1}{T}<x<\frac{1}{T}+h_k(T)} \Bigg\{ \sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu} \Bigg\}&>\bigg(\frac{1}{T}\bigg)^{\h-\epsilon} \\
+\min_{\frac{1}{T}<x<\frac{1}{T}+h_k(T)} \Bigg\{ \sum_{ p\equiv l_1\mod k} e^{-p r''_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r''_\nu} \Bigg\}&<- \bigg(\frac 1 T\bigg)^{\h -\epsilon}
+\end{align*}
+hold?
+\end{pbm}
+
+%P 5.34
+\begin{pbm}
+For which function $g_k(T)>0$ can we assert that for each $(l_1, l_2)$-pairs with the number of solutions of \eqref{l_1} and \eqref{l_2} equal, all functions
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r'_\nu}  - \sum_{p\equiv l_2\mod k} e^{-p r'_\nu}
+$$
+change sign at least once in every interval 
+$$
+T\leq x \leq T+ g_k(T)
+$$
+\end{pbm}
+
+%P 5.35
+\begin{pbm}
+For which function $a(k)$ can we asssert that for each $(l_1, l_2)$-pair withwith the number of solutions of \eqref{l_1} and \eqref{l_2} equal, all functions in
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  - \sum_{p\equiv l_2\mod k} e^{-p r}
+$$
+vanish at least some points in
+$$
+1 \leq x \leq a(k)
+$$
+\end{pbm}
+
+%P 5.36
+\begin{pbm}
+Let  $W_k(T; l_1, l_2)$ denote the number of sign changes of 
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  - \sum_{p\equiv l_2\mod k} e^{-p r}
+$$
+Then what is asymptotical behaviour of $W_k(T; l_1, l_2)$ as $T \rightarrow \infty$?
+\end{pbm}
+
+%P 5.37
+\begin{pbm}
+For a fixed $(l_1, l_2)$-pair with with the number of solutions of \eqref{l_1} and \eqref{l_2} equal, what is the asymptotic behaviour of $N_{l_1 l_2}(Y)$ as $Y \rightarrow \infty$, where $N_{l_1 l_2}(Y)$ denotes the number of integers $r \leq Y$ with 
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  \geq \sum_{p\equiv l_2\mod k} e^{-p r}$$
+\end{pbm}
+
+%P 5.38
+\begin{pbm}[Race-problem of Shanks-R\`enyi]
+For each permutations 
+$$
+l_1, l_2, l_3, \hdots, l_{\varphi(k)}
+$$
+of the reduced set of residue classes mod $k$, does there exist infitely many integers $r$'s with
+$$
+\sum_{ p\equiv l_1\mod k} e^{-p r}  < \sum_{p\equiv l_2\mod k} e^{-p r} < \sum_{ p\equiv l_3\mod k} e^{-p r} <\hdots < \sum_{p\equiv l_{\varphi} \mod k} e^{-p r}
+$$
+\end{pbm}
+
+%P 5.39
+\begin{pbm}\label{P39}
+Does there exist infinitely many integers $r_\nu$'s such that for $j=1, 2, 3, \hdots,\varphi(k)$ simultaneously 
+$$
+\sum_{ p\equiv l_j\mod k} e^{-p r_\nu} > \frac{1}{\varphi(k)} \sum_{n=2}^{\infty} \frac{e^{nr}}{\log n} 
+$$
+\end{pbm}
+
+%P 5.40
+\begin{pbm}
+If the answer to \ref{P39} is positive, then what are the distribution-properties of the $r_\nu$ sequence?
+\end{pbm}
+% 
+
+\newpage
+\section{Problems from IIa}
+%5.1
+\begin{pbm}[Problems of INFINITY of sign changes]
+To prove that the functions $\delta_f(x; k, l_1, l_2)$ for $f= \psi,\; \Pi, \; \vartheta,\; \pi$  and $l_1 \equiv l_2 \mod k$ change sign infinitely often. 
+\end{pbm}
+
+%5.2
+\begin{pbm}[Problems of infinity of BIG sign changes]
+To prove that each function $\delta_f(x; k, l_1, l_2)$ with $f= \psi,\; \Pi, \; \vartheta,\; \pi$  and $l_1 \equiv l_2 \mod k$ and arbitrarily small $\epsilon >0$ there is a sequence
+\begin{equation}
+x_1<x_2<x_3<\hdots \rightarrow + \infty
+\end{equation}
+such that, for each $\nu=1, 2, 3, \hdots$, $\delta_f(x_\nu; k, l_1, l_2)>x_\nu^{\h-\epsilon}$, and hence owing to the symmetry of $l_1, l_2$ also a sequence
+\begin{equation}
+y_1<y_2<y_3<\hdots \rightarrow + \infty
+\end{equation}
+such that $\delta_f(y_\nu; k, l_1, l_2)<-y_\nu^{\h-\epsilon}$
+\end{pbm}
+
+%5.3
+\begin{pbm}[LOCALIZED sign changes]
+To prove that for $T>T_0(k, j)$ and suitable $A(T)<T$, all functions $\delta_f(x; k, l_1, l_2)$ change sign in the interval 
+$$
+A(T)\leq x \leq T
+$$
+\end{pbm}
+
+%5.4
+\begin{pbm}[Localized BIG sign changes]
+To prove that for $T> T_0(k, j)$ and suitable $A(T)<T$ all functions $\delta_g(x; k, l_1, l_2)$ both the inequalities
+\begin{align*}
+\max_{A(T)\leq x \leq T}\delta_f(x; k, l_1, l_2)> & \frac{T^\h}{\Phi(T)}\\
+\min_{A(T)\leq x \leq T}\delta_f(x; k, l_1, l_2)< &- \frac{T^\h}{\Phi(T)}
+\end{align*}
+hold, with a $\Phi(x)>0$, satisfying 
+$$\lim_{x\to \infty}\frac{\log\Phi(x)}{\log x}= 0$$
+\end{pbm}
+
+%5.5
+\begin{pbm}[FIRST sign change]
+To determine for $f= \psi,\; \Pi,\; \vartheta \; \pi$ functions $A_f(k)$ such that for $1\leq x \leq A_f(k)$ all $\delta_f(x; k, l_1, l_2)$, $l_1 \not\equiv l_2 \mod k$, $k$ fixed, functions change sign at least once.
+\end{pbm}
+
+%5.6
+\begin{pbm}[ASYMPTOTIC estimation of the number of sign changes]
+\end{pbm}
+
+%5.7
+\begin{pbm}[AVERAGE preponderance problems]
+To mention a typical one, the results of Hardy-Landau-Littewood indicate that the inequality
+\begin{equation}
+\pi(n; 4, 1)-\pi(n; 4,3)<0
+\end{equation} 
+is true "much more often" than the inequality 
+\begin{equation}\label{1>3mod3}
+\pi(n; 4, 1)-\pi(n; 4,3)\geq 0
+\end{equation}
+Hence denoting $N(x)$ the number of indices $n\leq x$ with the property \ref{1>3mod3} probably the relation
+\begin{equation}
+\lim_{x \to \infty} \frac{N(x)}x = 0
+\end{equation}
+holds
+\end{pbm}
+
+%5.8
+\begin{pbm}[STRONGLY localized accumulation problems]
+In the previous problems in various ways the number of \emph{all} primes $\leq x$ in a fixed progression occurred. One can image that one can much better localize relatively small intervals where the primes of some progression preponderate. Again instead of writing out generally the pertaining the pertaining problems we confine ourselves to indicating the character of them by mentioning just one. 
+
+Is it true for $T>c_1$, ($c_1$ numerically positive constant) that for suitable $T \leq U_1 < U_2 \leq 2T$, we have:
+\begin{equation*}
+\sum_{\substack{U_1\leq p \leq U_2 \\ p \equiv 1 \mod 4}}1 - \sum_{\substack{U_1\leq p \leq U_2 \\ p \equiv 3 \mod 4}}1 > \frac{\sqrt T}{\Phi(T)}
+\end{equation*}
+\end{pbm}
+
+%5.9
+\begin{pbm}[Littlewood-generalizations]
+A typical problem of this kind would be the existence of a sequence $x_1< x_2< x_3< \hdots \to \infty$ such that simultaneously the inequalities
+\begin{equation}
+\pi(x_\nu; 4,1)\geq \h \Li(x_\nu) = \h \int_2^{x_\nu}\frac{du}{\log u}
+\end{equation}
+and
+\begin{equation}
+\pi(x_\nu; 4,3)\geq \h \Li(x_\nu) = \h \int_2^{x_\nu}\frac{du}{\log u}
+\end{equation}
+hold. This would constitute an obvious generalization of Littlewood's classical theorem that for a suitable sequences $y_1< y_2< y_3< \hdots \to \infty$ the inequality $\pi(y_\nu) \geq \Li(y_\nu)$
+\end{pbm}
+%%
+
+%5.10
+\begin{pbm}[RACING Problem]
+Again only a sample of these problems: if $l_1, l_2, l_3, \hdots, l_\varphi(k)$ is any prescribed order of the reduced reside systems $\mod k$ then for a suitable sequence $x_1<x_2<x_3\hdots \to \infty$ the inequalities
+\begin{equation*}
+\pi(x_\nu; k, l_1) \geq \pi(x_\nu; k, l_2) \geq \hdots \geq \pi(x_\nu; k, l_{\varphi(k)})
+\end{equation*}
+hold.
+
+G. G. Lorentz called our attention to the fact that comparison of primes of any two arithmetical progressions $\mod k_1$ and $k_2$ $(k_1 \neq k_2)$ is not trivial in the case when
+\begin{equation*}
+\varphi(k_1)= \varphi(k_2)
+\end{equation*}
+and analogous problems occur for moduli $k_1, k_2, k_3, \hdots, k_r$ with 
+\begin{equation*}
+\varphi(k_1)= \varphi(k_2)= \hdots = \varphi(k_r)
+\end{equation*}
+\end{pbm}
+
+%5.11
+\begin{pbm}[UNION-Problem]
+A typical problem of this kind is the following: For a given modulus $k$ do there exist two disjoint subsets $A$ and $B$, consisting of the same number of residue-classes, such that 
+\begin{equation}
+\sum_{p\in A, p\leq x} 1 \geq \sum_{p\in B, p\leq x} 1
+\end{equation}
+For all sufficiently large $x$'s.
+\end{pbm}
+
+
+\section{Problems in IIb}
+%6.1
+\begin{pbm}[Problems of INFINITY of sign changes]
+To prove that the functions $\Delta_F(x; k, l_1, l_2)$ for $F= \psi,\; \Pi, \; \vartheta,\; \pi$  and $l_1 \equiv l_2 \mod k$ change sign infinitely often. 
+\end{pbm}
+
+%6.2
+\begin{pbm}[Problems of infinity of BIG sign changes]
+To prove that for each functions $\Delta_F(x; k, l_1, l_2)$ for $f= \psi,\; \Pi, \; \vartheta,\; \pi$  and $l_1 \equiv l_2 \mod k$ and arbitrarily small $\epsilon >0$ there is a sequence
+\begin{equation}
+r_1>r_2>r_3>\hdots \rightarrow 0
+\end{equation}
+such that, for each $\nu=1, 2, 3, \hdots$, $\Delta_F(r_\nu; k, l_1, l_2)>r_\nu^{\h-\epsilon}$, and hence owing to the symmetry of $l_1, l_2$ also a sequence
+\begin{equation}
+s_1>s_2>s_3<\hdots \rightarrow 0
+\end{equation}
+such that $\Delta_f(s_\nu; k, l_1, l_2)<-y_\nu^{\h-\epsilon}$
+\end{pbm}
+
+%5.3
+\begin{pbm}[LOCALIZED sign changes]
+To prove that for $T>T_0(k, j)$ and suitable $A(T)<T$, all functions $\delta_f(x; k, l_1, l_2)$ change sign in the interval 
+$$
+A(T)\leq x \leq T
+$$
+\end{pbm}
+
+%5.4
+\begin{pbm}[Localized BIG sign changes]
+To prove that for $T> T_0(k, j)$ and suitable $A(T)<T$ all functions $\delta_g(x; k, l_1, l_2)$ both the inequalities
+\begin{align*}
+\max_{A(T)\leq x \leq T}\delta_f(x; k, l_1, l_2)> & \frac{T^\h}{\Phi(T)}\\
+\min_{A(T)\leq x \leq T}\delta_f(x; k, l_1, l_2)< &- \frac{T^\h}{\Phi(T)}
+\end{align*}
+hold, with a $\Phi(x)>0$, satisfying 
+$$\lim_{x\to \infty}\frac{\log\Phi(x)}{\log x}= 0$$
+\end{pbm}
+
+%5.5
+\begin{pbm}[FIRST sign change]
+To determine for $f= \psi,\; \Pi,\; \vartheta \; \pi$ functions $A_f(k)$ such that for $1\leq x \leq A_f(k)$ all $\delta_f(x; k, l_1, l_2)$, $l_1 \not\equiv l_2 \mod k$, $k$ fixed, functions change sign at least once.
+\end{pbm}
+
+%5.6
+\begin{pbm}[ASYMPTOTIC estimation of the number of sign changes]
+\end{pbm}
+
+%5.7
+\begin{pbm}[AVERAGE preponderance problems]
+To mention a typical one, the results of Hardy-Landau-Littewood indicate that the inequality
+\begin{equation}
+\pi(n; 4, 1)-\pi(n; 4,3)<0
+\end{equation} 
+is true "much more often" than the inequality 
+\begin{equation}\label{1>3mod3}
+\pi(n; 4, 1)-\pi(n; 4,3)\geq 0
+\end{equation}
+Hence denoting $N(x)$ the number of indices $n\leq x$ with the property \ref{1>3mod3} probably the relation
+\begin{equation}
+\lim_{x \to \infty} \frac{N(x)}x = 0
+\end{equation}
+holds
+\end{pbm}
+
+%5.8
+\begin{pbm}[STRONGLY localized accumulation problems]
+In the previous problems in various ways the number of \emph{all} primes $\leq x$ in a fixed progression occurred. One can image that one can much better localize relatively small intervals where the primes of some progression preponderate. Again instead of writing out generally the pertaining the pertaining problems we confine ourselves to indicating the character of them by mentioning just one. 
+
+Is it true for $T>c_1$, ($c_1$ numerically positive constant) that for suitable $T \leq U_1 < U_2 \leq 2T$, we have:
+\begin{equation*}
+\sum_{\substack{U_1\leq p \leq U_2 \\ p \equiv 1 \mod 4}}1 - \sum_{\substack{U_1\leq p \leq U_2 \\ p \equiv 3 \mod 4}}1 > \frac{\sqrt T}{\Phi(T)}
+\end{equation*}
+\end{pbm}
+
+%5.9
+\begin{pbm}[Littlewood-generalizations]
+A typical problem of this kind would be the existence of a sequence $x_1< x_2< x_3< \hdots \to \infty$ such that simultaneously the inequalities
+\begin{equation}
+\pi(x_\nu; 4,1)\geq \h \Li(x_\nu) = \h \int_2^{x_\nu}\frac{du}{\log u}
+\end{equation}
+and
+\begin{equation}
+\pi(x_\nu; 4,3)\geq \h \Li(x_\nu) = \h \int_2^{x_\nu}\frac{du}{\log u}
+\end{equation}
+hold. This would constitute an obvious generalization of Littlewood's classical theorem that for a suitable sequences $y_1< y_2< y_3< \hdots \to \infty$ the inequality $\pi(y_\nu) \geq \Li(y_\nu)$
+\end{pbm}
+%%
+
+%5.10
+\begin{pbm}[RACING Problem]
+Again only a sample of these problems: if $l_1, l_2, l_3, \hdots, l_\varphi(k)$ is any prescribed order of the reduced reside systems $\mod k$ then for a suitable sequence $x_1<x_2<x_3\hdots \to \infty$ the inequalities
+\begin{equation*}
+\sum_{n\equiv l_1 \mod k} e^{=n_\nu}\geq \sum_{n\equiv l_2 \mod k} e^{=n_\nu}\geq \hdots \geq \sum_{n\equiv l_\varphi{k} \mod k} e^{=n_\nu}
+\end{equation*}
+hold.
+
+G. G. Lorentz called our attention to the fact that comparison of primes of any two arithmetical progressions $\mod k_1$ and $k_2$ $(k_1 \neq k_2)$ is not trivial in the case when
+\begin{equation*}
+\varphi(k_1)= \varphi(k_2)
+\end{equation*}
+and analogous problems occur for moduli $k_1, k_2, k_3, \hdots, k_r$ with 
+\begin{equation*}
+\varphi(k_1)= \varphi(k_2)= \hdots = \varphi(k_r)
+\end{equation*}
+\end{pbm}
+
+%6.11
+\begin{pbm}[UNION-Problem]
+A typical problem of this kind is the following: For a given modulus $k$ do there exist two disjoint subsets $A$ and $B$, consisting of the same number of residue-classes, such that 
+\begin{equation}
+\sum_{p\in A, p\leq x} 1 \geq \sum_{p\in B, p\leq x} 1
+\end{equation}
+For all sufficiently large $x$'s.
+\end{pbm}
+
+----------------------------
+\newpage
+%3.
+\section{Results}\label{sec.Results}
+\numberwithin{thm}{subsection} %sets equation numbers <chapter>.<section>.<index>
+
+\subsection{Theorems from II ~\cite{1962.Knaposwki_2}}
+This paper investigate the comparison of the progressions
+\begin{equation}
+n\equiv 1 \mod k,\;\; n\equiv l \mod k,\;\; {\rm and } 
+\;\; l\not\equiv 1 \mod k
+\end{equation}\label{II.1}
+For $k=3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 19, 24$, we have the Theorems:
+\begin{thm}[1.1 from II]
+\begin{align*}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)>& \sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)<&- \sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align*}
+\end{thm}
+
+
+\begin{thm}[1.2 from II]
+If $\rho_0=\beta_0+i\gamma_0$ with $\beta_0\geq \h, \gamma_0 > 0$, $\rho_0$ is a zero of an $L(s, \chi^*)$ belonging to mod $k$ and $\chi^*(l)\neq 1$ and $T>\max_(c_3, e_2(10|\rho_0|))$, then the inequalities 
+
+\begin{align*}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)>& T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)<&-T{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align*}
+hold.
+\end{thm}
+
+\begin{thm}[2.1 from II]
+\begin{align*}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\Pi(x; k, 1, l)>& \sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\Pi(x; k, 1, l)<&- \sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align*}
+\end{thm}
+
+\begin{thm}[2.2 from II]
+If $\rho_0=\beta_0+i\gamma_0$ with $\beta_0\geq \h, \gamma_0 > 0$, $\rho_0$ is a zero of an $L(s, \chi^*)$ belonging to mod $k$ and $\chi^*(l)\neq 1$ and $T>\max_(c_5, e_2(10|\rho_0|))$, then the inequalities 
+
+\begin{align*}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\Pi(x; k, 1, l)>& T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\Pi(x; k, 1, l)<&-T{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align*}
+hold.
+\end{thm}
+
+Combining Theorems (1.2 and 2.2 from II) we get:
+\begin{thm}[3.1 from II]
+If for a modulus $k$ Haselgrove's conditions holds for a $\rho_0$ with $\rho_0=\beta_0+i\gamma_0 $, then for 
+\begin{equation}
+T>\max\bigg(c_6, e_2(10|\rho_0|), e_2(k), e_2\Big(\frac{1}{A(k)^3}\Big)\bigg)
+\end{equation}
+the inequalities
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)>& T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\psi(x; k, 1, l)<&-T{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align}
+and further
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)>& T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)<&-T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align}\end{thm}
+
+\begin{thm}[4.1 from II]
+In the interval 
+$$
+0<x<\max \bigg(c_7, e_2(k), e_2\Big(\frac{1}{A(k)^3} \Big) \bigg)
+$$
+the functions $\delta_\psi(x; k, 1, l)$ and $\delta_\Pi(x; k, 1, l)$ certainly change their sign, when $k$ satisfies the Haselgrove condition. 
+
+Here
+\begin{equation}
+c_7=\max\big(c_6, e_2(10(1+c_2))\big)
+\end{equation}
+\end{thm}
+
+
+\begin{thm}[4.2 from II]
+If for a $k$ the Haselgrove condition holds 
+$$
+T>\exp c_9^2 \bigg(e_1(k)+e_1\Big(\frac{1}{A(k)^3} \Big) \bigg)^2
+$$
+then the inequalities
+\begin{align}
+w_\psi(T; k, 1, l_1) &> \frac{1}{8\log 3}\log_2{T} \\
+w_\Pi(T; k, 1, l_1) &> \frac{1}{8\log 3}\log_2{T}
+\end{align}
+hold.
+\end{thm}
+
+\begin{thm}[4.3 from II]
+Let $L(s, \chi^*)$ be an arbitrary $L$-function mod $k$ and (supposing Haselgrove's condition for $k$)
+\begin{equation}
+T> \max\bigg(c_6, e_2(k), e_2\Big(\frac{1}{A(k)^3}\Big)\bigg)
+\end{equation}
+If $l$ is such that $\chi^*(l)\neq 1$ , then $L(s, \chi)$ does NOT vanish in the domain 
+$$
+\sigma \geq 41\frac{\log_3{T}}{\log_2{T}} +\frac{1}{\log T}\max_{T^{\frac{1}{3}} \leq x \leq T}\log \delta_\psi(x; k, 1, l)
+$$
+$$
+|t|\leq \frac{1}{10} \log_2{T} -1
+$$
+\end{thm}
+
+%5.1
+\begin{thm}[5.1 from II]
+If $k$ is one of the moduli \ref{II.1} then for $T> c_10$ the inequalities
+
+\begin{align}
+\label{II.5.1.a}
+\max_{e_1(\log_3^{\frac{1}{130}}T ) \leq x \leq T} \frac{\delta_\pi(x; k, 1, l)}{\bigg( \frac{\sqrt{x}}{\log x}\bigg)}  &> \frac{1}{100} \log_5 T\\
+\label{II.5.1.b}
+\min_{e_1(\log_3^{\frac{1}{130}}T ) \leq x \leq T} \frac{\delta_\pi(x; k, 1, l)}{\bigg( \frac{\sqrt{x}}{\log x}\bigg)}  &< - \frac{1}{100} \log_5 T
+\end{align}
+\end{thm}
+?
+%5.2
+\begin{thm}[5.2 from II]
+If Haselgrove's condition holds for a $k$ and
+\begin{equation} 
+\label{II.5.2}
+T>\max\bigg( e_5(c_{11} k), e_2\Big(\frac{1}{A(k)^3}\Big)\bigg)
+\end{equation}
+then the inequalities \ref{II.5.1.a} and \ref{II.5.1.b} hold
+\end{thm}
+
+%5.3
+\begin{thm}[5.3 from II]
+If Haselgrove's condition holds for a $k$ then the interval 
+\begin{equation} 
+1\leq x \leq \max \bigg( e_5(c_{11} k), e_2\Big(\frac{1}{A(k)^3}\Big)\bigg)
+\end{equation}
+contains at least a zero of $\delta_\pi(x; k, 1, l)$
+\end{thm}
+
+%5.4
+\begin{thm}[II 5.4]
+If Haselgrove's condtition holds for a $k$ and for $T$ with \ref{II.5.2}, then the inequalities
+\begin{align}
+\max_{e_1(\log_3^{\frac{1}{130}}T )} \frac{\log x}{\sqrt{x}} \bigg\{ \pi(x; k, 1) - \frac{1}{\varphi(k)-1}\mathop{\sum\nolimits_l}_{\substack{(l, k)=1\\ l\neq 1}}\pi(x; k, l)\bigg\} &> \frac{1}{100} \log_5{T}\\
+\min_{e_1(\log_3^{\frac{1}{130}}T )} \frac{\log x}{\sqrt{x}} \bigg\{ \pi(x; k, 1) - \frac{1}{\varphi(k)-1}\mathop{\sum\nolimits_l}_{\substack{(l, k)=1\\ l\neq 1}}\pi(x; k, l)\bigg\} &<- \frac{1}{100} \log_5{T}
+\end{align}
+\end{thm}
+
+%Greg says: try
+%\[
+%\mathop{\sum\nolimits_l}_{\substack{(l, k)=1\\ l\neq 1}} blah
+%\]
+
+
+%%%
+\subsection{Theorems from III ~\cite{1962.Knaposwki_3}}
+%III 1.1
+\begin{thm}[1.1 from III]
+For $T>c_1$ we have for the moduli $k$ in \ref{II.1} the inequality 
+\begin{equation}
+w_\pi(T; k, 1, l)> c_2 \log_4 T
+\end{equation}
+\end{thm}
+
+%III 1.2
+\begin{thm}[1.2 from III]
+If $k$ satisfies the Haselgrove condition holds then for 
+\begin{equation}
+T>\max \bigg(e_4(k^{c_3}), e_2\Big(\frac{2}{A(k)^3} \Big)\bigg)
+\end{equation}
+then the inequality 
+\begin{equation}
+w_\pi(T; k, 1, l)>k^{-c_3}\log_4 T
+\end{equation}
+holds
+\end{thm}
+
+%III 1.3
+\begin{thm}
+If for a $k$ the Haselgrove condition holds then in the interval
+\[
+0 < x \leq \max  \bigg(e_4(k^{c_3}), e_2\Big(\frac{2}{A(k)^3} \Big)\bigg)
+\]
+there exists at least one $x$ such that 
+\[
+w_\pi (T; k, 1, l)=0
+\]
+for all $l\not\equiv 1 \mod k$
+\end{thm}
+
+%dfn
+\begin{dfn}
+For 
+\begin{equation}
+\pi(x; k, 1)- \frac{1}{\varphi(k)-1}\sum_{\substack{(l, k) =1 \\ l \neq 1 \\ l}} \pi(x; k, l)
+\end{equation}
+we denote the number of sign-changes in this function for $x \in (0,  T] $ by $S_k(T)$
+\end{dfn}
+
+%III 1.4
+\begin{thm} [1.4 from III]
+If $k$ satisfies the Haselgrove condition holds then for 
+$$
+T>\max \bigg(e_4(k^{c_3}), e_2\Big(\frac{2}{A(k)^3} \Big)\bigg)
+$$
+the inequality 
+$$
+S_k(T)> k^{-c_3}\log_4{T}
+$$
+the same result holds if we changed 
+\[
+\pi(x; k, 1)- \frac{1}{\varphi(k)-1}\sum_{\substack{(l, k) =1 \\ l \neq 1 \\ l}} \pi(x; k, l)
+\]
+by $\pi(x; k, 1)-\frac{1}{\varphi(x)}\pi(x)$ and mutatis mutandis for 
+\[
+\pi(x; k, 1)-\frac{1}{\varphi(x)}\int_2^x\frac{dv}{\log v}
+\]
+\end{thm}
+
+Problems 6 and 5:
+The $l's$ in question are those of which the congruence 
+\begin{equation} \label{x2 = l mod k}
+x^2 \equiv l \mod k 
+\end{equation}
+has exactly has many (incongruent) solutions as the congruence
+\begin{equation} \label{x2 = 1 mod k}
+x^2 \equiv 1 \mod k 
+\end{equation}
+%III 2.1
+\begin{thm}[III 2.1]
+For the $k's$ in \ref{II.1} and $l's$ satisfying the condition \ref{x2 = l mod k} and \ref{x2 = l mod k} for $T> c_4$ the inequalities
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)>& \sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)<&-\sqrt{T}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align}
+\end{thm}
+
+which is a special case of:
+\begin{thm}[III 2.2]
+For the moduli $k$ in \ref{II.1} and $l$ satisfying \ref{x2 = l mod k} and \ref{x2 = 1 mod k}, of $\rho=\beta_0+i\gamma$ with $\beta \geq \h$ such that $L( \rho, \chi) = 0$ with $\chi(l)\neq 1$, then we have for
+\[
+T> \max(c_5, e_2(10|\rho|)
+\] 
+the inequalities 
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)>& T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)\\
+\min_{T^\frac{1}{3}\leq x \leq T}\delta_\pi(x; k, 1, l)<&-T^{\beta_0}e_1\bigg{(} -41\frac{\log{(T)}\log_3{(T)}}{\log_2{(T)}}\bigg)
+\end{align}
+
+\end{thm}
+
+%III 3.1
+\begin{thm}[III 3.1]
+If for a $k$ the Haselgrove condition holds and $l$ satisfies \ref{x2 = l mod k} and \ref{x2 = 1 mod k} then for
+\[
+T>\max\bigg(c_7, e_2(k), e_2\Big(\frac{1}{A(k)^3} \Big)\bigg)
+\]
+III 2.1 holds
+\end{thm}
+
+%III 3.2
+\begin{thm}[III 3.2]
+If for a $k$ the Haselgrove condition holds and $l$ satisfies \ref{x2 = l mod k} and \ref{x2 = 1 mod k} , AND if further $\rho = \beta_0 + i\gamma$, $\beta_0 \geq \h$ is a zero for an $L(s, \chi)$ with $\chi(l) \neq 1$, then for 
+\begin{equation}
+T>\max \bigg( c_7, e_2(k), e_2\Big(\frac{1}{A(k)^3} \Big), e_2(10|\rho|) \bigg)
+\end{equation}
+III 2.2 holds
+\end{thm}
+
+%III 3.3
+\begin{thm} [III 3.3]
+For $T>c_1$ and $k's$ in the moduli \ref{II.1} and $l's$ satisfying \ref{x2 = l mod k} and \ref{x2 = 1 mod k}, then the inequality
+\[
+w_\pi(T; k, 1, l)> c_8 \log_2 T
+\]
+\end{thm}
+
+%III 3.4
+\begin{thm}[III 3.4]
+If for a $k$ the Haselgrove condition holds and 
+\[
+T>\max\bigg(c_9, e_2(2k), e_2\Big(\frac{2}{A(k)^3}\Big) \bigg)
+\]
+$l$ satisfies \ref{x2 = l mod k} and \ref{x2 = 1 mod k} then 
+\[
+w_\pi (T; K, 1, l) > c_8 \log_2 T
+\]
+\end{thm}
+
+%III 4.1
+\begin{thm}[III 4.1]
+If $A> 0$ then there are integers $\nu_1$ and $\nu_2$ with
+\begin{equation}
+m+1 \leq \nu_1, \; \; \; \; \nu_2 \leq m+ n\Big(3+\frac{\pi}{x}\Big)
+\end{equation}
+such that 
+
+\begin{align}
+\Re \sum_{j=1}^{n} {b_j z_j^{\nu_1}}& \geq \frac{A}{2n +1} \Bigg\{ \frac{n}{24\Big(m+n\Big(3+\frac{\pi}{x}\Big)\Big)}\Bigg\}^{2n}\bigg(\frac{|z_h|}{2}\bigg)^{m+n(3+\frac{\pi}{x})} \\
+\Re \sum_{j=1}^{n} {b_j z_j^{\nu_2}}& \geq - \frac{A}{2n +1} \Bigg\{ \frac{n}{24\Big(m+n\Big(3+\frac{\pi}{x}\Big)\Big)}\Bigg\}^{2n}\bigg(\frac{|z_h|}{2}\bigg)^{m+n(3+\frac{\pi}{x})}
+\end{align}
+\end{thm}
+
+%%%IV
+\subsection{Theorems from IV~\cite{1963.Knaposwki_4}}[General case k = 8 \& 5]
+% IV 1.1
+\begin{thm}[IV 1.1]
+For $T>c_1$ and for all pairs $l_1$ and $l_2 $ with $l_1\neq l_2$ among the numbers 3, 5, 7 $\mod 8$, we have
+\begin{equation}
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\pi(x; 8, l_1, l_2) > \sqrt{T} \Big(-23 \frac{\log T \log_3 T}{\log_2 T}\Big)
+\end{equation}
+\end{thm}
+
+%IV 1.2
+\begin{thm}[IV 1.2]
+For $T>c_1$, the inequality 
+\begin{equation}
+w_\pi(T; 8, l_1, l_2)>c_2\log_2 T
+\end{equation}
+if only $l_1 \neq l_2$ among $3, 5, 7$.
+\end{thm}
+
+
+Since the congruence
+\[
+x^2\equiv l \mod 8, \; \; \; \; \; l\not\equiv 1 \mod 8
+\]
+is NOT solvable implies that Theorem 1.2 is a consequence of 
+
+%IV 2.1
+\begin{thm} [IV 2.1]
+For $T>c_4$ and all pairs $l_1 \neq ;_2$ among the numbers $3, 5, 7$ we have
+\[
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\Pi(x; 8, l_1, l_2) >\sqrt{T} e_1\Big(-23 \frac{\log T \log_3 T}{\log_2 T}\Big)
+\]
+\end{thm}
+
+%IV 2.2
+\begin{thm} [IV 2.2]
+For $T>c_4$ and all pairs $l_1 \neq l_2$ among the numbers $3, 5, 7$ we have
+\[
+\max_{T^{\frac{1}{3}}\leq x \lq T}\delta_\psi(x; 8, l_1, l_2) >\sqrt{T} e_1\Big(-23 \frac{\log T \log_3 T}{\log_2 T} \Big)
+\]
+\end{thm}
+
+%IV 2.3
+\begin{thm} [IV 2.3]
+For $T>c_4$ and all pairs $l_1 \neq l_2$ among the numbers $3, 5, 7$ we have
+\begin{align}
+w_\psi(T; 8, l_1, l_2)> &\log_2 T \\
+w_\Pi(T; 8, l_1, l_2)> &\log_2 T
+\end{align}
+\end{thm}
+
+
+%%%V
+\subsection{Theorems from V~\cite{1963.Knaposwki_5}}[General Cases]
+
+%V 1.1
+\begin{thm} [V 1.1]
+Supposing the truth of the "finite" Riemann-Piltz conjecture, accordings to which no $L(s, \chi)$ vanishes for a sufficiently large $c_1 \geq 1$  
+\begin{equation}\label{V 1.3}
+\sigma >\h,  \; \; |t| \leq c_1k^{10}
+\end{equation}
+sometimes both, or what amounts to the samem no $L(s, \chi)$ with $\chi=\chi_0$ vanishes for 
+\begin{equation}\label{V 1.4}
+\sigma = \h, \;\; |t|\leq A(k)
+\end{equation}
+and with sufficiently large $c_2$,
+\begin{equation}
+T>\max\Bigg\{e_2(c_2k^{20}), e_1\bigg( 2e_1\Big(\frac{1}{A(k)^3}\Big)+c_2k^{20}\bigg)\Bigg\}
+\end{equation}
+we have for $l_1\neq l_2$ the inequalities
+\begin{align}
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\psi(x; k, l_1, l_2)>& \sqrt{T}e_1\bigg(-44\frac{\log T \log_3 T}{\log_2 T}\bigg) \\
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\Pi(x; k, l_1, l_2)>& \sqrt{T}e_1\bigg(-44\frac{\log T \log_3 T}{\log_2 T}\bigg)
+\end{align}
+\end{thm}
+
+
+%V 1.2
+\begin{thm} [V 1.2]
+By the above theorem, both of $\delta_\psi(x; k, l_1, l_2)$ and  $\delta_\Pi(x; k, l_1, l_2)$ have a sign change in the interval $[T^{\frac{1}{3}},  T]$ whenever $T$ satisfies (Ref of the Max above), then we get at once:\\
+For 
+\begin{equation}
+T>\max\Bigg\{e_1\big(9e_1(2c_2 k^{20}\big), e_1\bigg( 2e_1\Big(72e_1\frac{2}{A(k)^3}\Big)+18c_2^2k^{40}\bigg)\Bigg\}
+\end{equation} 
+
+the inequalities 
+\begin{align}
+w_\psi(T; k, l_1, l_2)&> \frac{\log_2 T}{2\log 3} \\
+w_\Pi(T; k, l_1, l_2) &> \frac{\log_2 T}{2\log 3}
+\end{align}
+\end{thm}
+
+%V 1.2 Remark
+\begin{cor}
+
+\end{cor}
+
+%V 1.2
+\begin{thm} [V 3.1]
+Supposing the truth of , we have for each $(l, k)=1$ and
+\begin{equation}
+T>\max\Bigg\{e_2(c_2k^{20}), e_1\bigg(2e_1\Big(\frac{1}{A(k)^3}\Big)+c_3k^{20}\bigg)\Bigg\}
+\end{equation}
+both the inequalities
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \lq T}\bigg\{\Pi(x, k, l)-\frac{1}{\varphi(k)}\Pi(x)\bigg\}>&\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big) \\
+\max_{T^\frac{1}{3}\leq x \lq T}\bigg\{\Pi(x, k, l)-\frac{1}{\varphi(k)}\Pi(x)\bigg\}<&-\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big)
+\end{align}
+
+and the same hold if we replace $\Pi$ by $\psi$:
+\begin{align}
+\max_{T^\frac{1}{3}\leq x \lq T}\bigg\{\psi(x, k, l)-\frac{1}{\varphi(k)}\psi(x)\bigg\}>&\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big) \\
+\max_{T^\frac{1}{3}\leq x \lq T}\bigg\{\psi(x, k, l)-\frac{1}{\varphi(k)}\psi(x)\bigg\}<&-\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big)
+\end{align}
+
+\end{thm}
+
+%%%VI
+\subsection{Theorems from VI~\cite{1963.Knaposwki_6}}[General Cases ctd]
+\begin{thm}[VI 1.1]
+If for a $k$ the  \eqref{V 1.3}  and \eqref{V 1.4} hold, then for 
+\begin{equation}
+T>\max\Bigg\{e_2(c_2k^{20}), e_1\bigg(2e_1\Big(\frac{1}{A(k)^3}\Big)+c_3k^{20}\bigg)\Bigg\}
+\end{equation} 
+
+and all $(l_1, l_2)$ pairs where they have the same quadratic module, both the following inequalities hold:
+\begin{align}
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\pi(x; k, l_1, l_2)>&\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big) \\
+\max_{T^{\frac{1}{3}}\leq x \leq T}\delta_\pi(x; k, l_2, l_2)>&\sqrt{T}e_1\Big(-44\frac{\log T\log_3 T}{\log_2 T}\Big) 
+\end{align}
+\end{thm}
+
+
+%%%VII
+\subsection{Theorems from VII~\cite{1963.Knaposwki_7}}[SIGN-CHANGES  in General Cases]
+\begin{thm}[VII 1.1]
+If fir a $k$ no $L(s, \chi)$ $\mod k$ vanish for $0<\sigma<1$, then each function $\delta_\psi(x; k, l_1, l_2)$ with $l_1 \not{=} l_2$ changes its sign infinitely often for $1\leq x < +\infty$
+\end{thm}
+
+\begin{thm}[VII 1.2]
+First sign change:
+If for a $k$ no $L(s, \chi)$ $\mod k$ vanish for $0<\sigma <1, \;\; |t| \leq A(k)\leq 1$,  then all functions $\delta_\psi(x; k, l_1, l_2)$ with $l_1 \neq l_2$ change their sign in the interval 
+\begin{equation}
+1\leq x \leq \max\bigg( e_2(k^{c_2}, e_2\Big( \frac{2}{A(k)^3} \Big) \bigg)
+\end{equation}
+with a sufficiently large $c_2$
+\end{thm}
+
+
+\begin{thm}[VII 1.3]
+If for a $k$ no $L(s, \chi)$ $\mod k$ vanishes for 
+If for a $k$ no $L(s, \chi)$ $\mod k$ vanish for $0<\sigma <1, \;\; |t| \leq A(k)\leq 1$,  then all functions $\delta_\psi(x; k, l_1, l_2)$ with $l_1 \neq l_2$ change their sign in the interval 
+\begin{equation}
+\omega \leq x \leq e^{2\sqrt{\omega}}
+\end{equation}
+if only 
+\begin{equation}
+\omega \geq \max \bigg( e_1(k^{c_2}), e_1\Big(\frac{2}{A(k)^3}\Big)\bigg)
+\end{equation}
+for a sufficiently large $c_2$
+\end{thm}
+
+
+
+%%%VIII
+\subsection{Theorems from VIII~\cite{1963.Knaposwki_8}}[k=8]
+
+\begin{thm}[VIII 1.1]
+[UNCONDITIONAL RESULTS]
+If $0<\delta< c_1$, then for $l_1\not\equiv l_2 \not\equiv 1 \mod 8$ the inequality
+\begin{equation}
+\max_{\delta\leq x \leq \delta^{\frac 1 3}} 
+\Delta_\vartheta(x; 8, l_1, l_2)> \frac{1} {\sqrt\delta} e_1 \Bigg(-22\frac {\log\big(\frac 1 \delta\big) \log_3\big(\frac 1 \delta)} {\log_2\big(\frac 1 \delta \big)} \Bigg)
+\end{equation}
+and since $l_1$ and $l_2$ can be interchanged,
+ \begin{equation}
+\max_{\delta\leq x \leq \delta^{\frac 1 3}} 
+\Delta_\vartheta(x; 8, l_1, l_2)<- \frac{1} {\sqrt\delta} e_1 \Bigg(-22\frac {\log\big(\frac 1 \delta\big) \log_3\big(\frac 1 \delta)} {\log_2\big(\frac 1 \delta \big)} \Bigg)
+\end{equation}
+also holds
+\end{thm}
+
+\begin{thm}[VIII 1.2]
+If for an $l \not\equiv 1 mod 8$ 
+\[
+\lim_{x\to +0}\Delta_\vartheta(x; k, 1, l) = -\infty
+\]
+then no $L(s, \chi)$-function mod 8 with $\chi(x) \neq 1$ can vanish for $\sigma > \h$
+\end{thm}
+
+\begin{thm}[VIII 1.3]
+If no $L(s, \chi)$ functions mod 8 with  $\chi \neq  \chi_0$ vanish for $\sigma > \h$ then for all $l\not\equiv 1\mod 8$ we have
+If for an $l \not\equiv 1 \mod 8$ 
+\[
+\lim_{x\to  +0}\Delta_\vartheta(x; k, 1, l) = -\infty
+\]
+\end{thm}
+
+\begin{thm}[VIII 1.4]
+If  $0<\delta< c_1\leq 1$, then for $l\not\equiv 1 \mod8 $ the following inequalities hold:
+\begin{align}
+\max_{\delta\leq x \leq \delta^{\frac 1 3}}  \Delta_{\psi}(x; 8, 1, l)&>\frac{1}{\sqrt\delta}e_1\ \Bigg(-22\frac {\log\big(\frac 1 \delta\big) \log_3\big(\frac 1 \delta)} {\log_2\big(\frac 1 \delta \big)} \Bigg) \\
+\min_{\delta\leq x \leq \delta^{\frac 1 3}}  \Delta_{\psi}(x; 8, 1, l)&<-\frac{1}{\sqrt\delta}e_1\ \Bigg(-22\frac {\log\big(\frac 1 \delta\big) \log_3\big(\frac 1 \delta)} {\log_2\big(\frac 1 \delta \big)} \Bigg)
+\end{align}
+\end{thm}
+
+%%%%%%%%
+%%%%%ZWEI
+%%%%%%%%
+
+\newpage
+\section{Results ZWEI}\label{sec.Results2}
+\numberwithin{thm}{subsection} %sets equation numbers <chapter>.<section>.<index>
+
+\subsection{Results from 1b~\cite{1964.Turan_1}}
+\begin{thm}
+Let $k$ fulfill the Haselgrove condition, $(l, k) =1$, and let $\rho=\beta+i\gamma$ be an zero of an $L(s, \chi)$ with $\chi(l)\neq 1$and $\beta\geq \h$. Then with a sufficiently large $c_3$ for 
+\begin{equation}
+T>\max\bigg(c_3, e_2(k), e_1\Big(\frac{1}{E(k)}\Big), e_2(|\rho|)\bigg)
+\end{equation}
+with suitable $U_1$, $U_2$, $U_3$, $U_4$ satisfying
+\begin{align}
+Te_1\big(-\log^{\frac{11}{12}}T\big)\leq U_1 <U_2\leq T \\
+Te_1\big(-\log^{\frac{11}{12}}T\big)\leq U_3 <U_4\leq T
+\end{align}
+the inequalities 
+\begin{align}
+\sum_{\substack{n\equiv 1 \mod k\\U_1\leq n \leq U_2}}\Lambda(n)-\sum_{\substack{n\equiv l \mod k\\U_1\leq n \leq U_2}}\Lambda(n) &\geq T^{\beta}e_1\big( -\log^{\frac{11}{12}}T\big)\\
+\sum_{\substack{n\equiv 1 \mod k\\U_1\leq n \leq U_2}}\Lambda(n)-\sum_{\substack{n\equiv l \mod k\\U_3\leq n \leq U_4}}\Lambda(n) &\leq T^{\beta}e_1\big( -\log^{\frac{11}{12}}T\big)
+\end{align}
+hold.
+\end{thm}
+
+%IIb
+\subsection{Results from 2b~\cite{1964.Turan_2}}
+\begin{thm} %1
+For any fixed $k$ satisfies the Haselgrove Condition [REF] and for all quadratic non-residues $l \mod k$, $(l, k) =1$, the relation
+\begin{equation}
+\lim_{x \to \infty} \sum_p{\varepsilon(k; p, l, 1) \log{p}  e_1\bigg( -\frac{1}{r(x)}\log^2\Big(\frac p x \Big)\bigg)} = +\infty
+\end{equation}
+for every $r(x)$ satisfying $a_1(k) \leq r(x) \leq \log x$ is TRUE if and only if none of the $L$ functions, conductor mod k, with $\chi\neq \chi_0$ vanishes for $\sigma > \h$
+\end{thm}
+
+\begin{thm} %2
+For any fixed "good" $k$ and for all quadratic non-residues $l \mod k$, $(l, k) =1$, the relation
+\begin{equation}
+\lim_{x \to \infty} \sum_p{\varepsilon(k; p, l, 1) \log{p} \cdot  e_1\bigg( -\frac{1}{r(x)}\log^2\Big(\frac p x \Big)\bigg)} = +\infty
+\end{equation}
+for every $r(x)$ satisfying $a_1(k) \leq r(x) \leq \log x$ is TRUE if and only if none of the $L$ functions, conductor mod k, with $\chi(l)\neq 1$ vanishes for $\sigma > \h$
+\end{thm}
+
+\begin{thm} %IIb 3
+Assume $E(k) \leq \frac{\sqrt k}{k}$, if for a k satisfying the Haselgrove condition and a prescribed quadratic nonresidue $l$, no $L(s, \chi)$ with $\chi(l) \neq 1$ vanishes for $\sigma > \h$, then for suitable $c_4, c_5, c_6$ and
+\[
+r_0 = c_4 \frac{\log k}{E(k)^2}
+\] 
+the inequality
+\begin{equation}
+\sum_p \varepsilon(k; p, l, 1) \log{p}  \cdot e_1 \bigg( -\frac{1}{r(x)}\log^2\Big(\frac{p}{x} \Big)\bigg)> c_5 \sqrt{x}
+\end{equation}
+holds whenever $r_0\leq r \leq \log  x$ and $x > c_6 k^{50}$
+\end{thm}
+
+\begin{thm} %IIb 4
+If for a $k$ satisfying the Haselgrove condition and a quadratic non-residue $l$ there exists an $L(s, \chi)$ with $\chi(k) \neq 1$ such that 
+\begin{equation}
+L(\rho, \chi) =0, \;\;\;\;\; \rho=\beta + i\gamma, \;\;\;\;\; \beta>\h, \;\;\;\;\; \gamma>0
+\end{equation} 
+then for all $T$ with 
+\begin{equation}
+T>\max \bigg(c_7, e_1\Big( \pi^7E(k)^{-7}\Big), e_1\Big( e_1(k)\Big), e_1\Big( \big( \frac{4+\gamma^2}{\beta -\h}\big) ^{21}\Big) \bigg)
+\end{equation}
+then there exist integers $r_1$ and $r_2$ with
+\begin{equation}
+2\log^{5/7}{T} - 4\log^{4/7}{T}\leq r_1, r_2 \leq 2\log^{5/7}{T} - 4\log^{4/7}{T}
+\end{equation}
+and $x_1$, $x_2$ with 
+\begin{equation}
+T \leq x_1, x_2 \leq Te_1(4 \log^{20/21}{T})
+\end{equation}
+such that 
+\begin{align}
+\sum_{p}\epsilon(k; p, l, 1) \log{p}\cdot  e_1\bigg( -\frac{1}{r_1}\log^2\Big(\frac p x_1 \Big)\bigg) &\geq T^{\beta}e_1 \Big(-(1+\gamma^2)\log^{5/7}{T} \Big)\\
+\sum_{p}\epsilon(k; p, l, 1) \log{p}\cdot  e_1\bigg( -\frac{1}{r_1}\log^2\Big(\frac p x_1 \Big)\bigg) &\leq -T^{\beta}e_1 \Big(-(1+\gamma^2)\log^{5/7}{T} \Big)
+\end{align}
+Again with the contribution of primes $p$ with $p>T e_1(\log^{41/42} T)$ and $p<T e_1(-\log^{41/42}T)$ is $o(\sqrt T)$;
+\end{thm}
+
+%5
+\begin{thm}
+If for a $k$ satisfying the Haselgrove condition and a quadratic non-residue $l$ there exists an $L(s, \chi)$ with $\chi(k) \neq 1$ such that 
+\begin{equation}
+L(\rho, \chi) =0, \;\;\;\;\; \rho=\beta + i\gamma, \;\;\;\;\; \beta>\h, \;\;\;\;\; \gamma>0
+\end{equation} 
+then for all $T$ with 
+\begin{equation}
+T>\max \bigg(c_7, e_1\Big( \pi^7E(k)^{-7}\Big), e_1\Big( e_1(k)\Big), e_1\Big( \big( \frac{4+\gamma^2}{\beta -\h}\big) ^{21}\Big) \bigg)
+\end{equation}
+ then there exist $U_1, U_2, U_3$ and $U_4$ with 
+\begin{align}
+Te_1(-5\log^{20/21}T)\leq U_1< U_2\leq Te_1(5\log^{20/21}T)\\
+Te_1(-5\log^{20/21}T)\leq U_3< U_4\leq Te_1(5\log^{20/21}T)
+\end{align}
+such that
+\begin{align}
+\sum_{\substack{U_1\leq p \leq U_2\\ p\equiv l \mod k}}{1}-\sum_{\substack{U_1\leq p \leq U_2\\ p\equiv 1 \mod k}}{1}&> T^\beta e_1\Big( (2+\gamma^2)\log^{5/7}T \Big) \\
+\sum_{\substack{U_1\leq p \leq U_2\\ p\equiv l \mod k}}{1}-\sum_{\substack{U_1\leq p \leq U_2\\ p\equiv 1 \mod k}}{1}&<- T^\beta e_1\Big( (2+\gamma^2)\log^{5/7}T \Big)
+\end{align}
+\end{thm}
+
+%6
+\begin{thm}
+For a $k$ satisfying the Haselgrove Condition and quadratic residue $l_1$ and quadratic non-residue $l_2$ mod $k$ with no $L(s, \chi)$ vanishes  for $\sigma>\h$ with $\chi(l_1)\neq \chi(l_2)$, then for sutible $c_4, c_5, C_6$ and
+\begin{equation}
+r_0=c_4\frac{\log k}{E(k)^2}
+\end{equation}
+
+the inequalities
+
+\begin{equation}
+\sum_p\varepsilon(k; p, l_2, l_1)\log{p}\cdot e_1\Big(-\frac{1}{r}\log^2\frac{p}{x} \Big) > c_5\sqrt{x}
+\end{equation}
+holds whenever
+\begin{equation}
+r_0\leq r \leq \log x
+\end{equation}
+and 
+
+\begin{equation}
+x>c_4k^{50}
+\end{equation}
+\end{thm}
+
+\subsection{Results from 3b ~\cite{1965.Turan_3}}
+\begin{thm}%1
+In the case when 
+\begin{equation}
+l_2=1= {\rm quadratic \;\; residue \;\; mod\;\;} k
+\end{equation}and for 
+\begin{equation}
+T>\max\bigg(c, e_1\big(4e_1(3k)\big), e_1\Big(\frac{(20\pi)^6}{E(k)^6}\Big) \bigg)
+\end{equation}
+there exist $x_1$, $x_2$ in thee interval 
+\begin{equation}
+\Big( Te_1(-(\log T)^{5/6}, Te_1(\log{T})^{11/15} \Big)
+\end{equation}
+such that for suitable 
+\begin{equation}
+(2\log T)^{2/3}\leq v_1, v_2 \leq (2\log T)^{2/3}+(2\log T)^{2/5}
+\end{equation}
+both the inequalities
+\begin{align}
+\sum_p\varepsilon(k; p, l_2, l_1)\log{p}\cdot e_1\Big(-\frac{1}{r_1}\log^2\frac{p}{x_1} \Big) & > \sqrt{T}e_1\big(-c'_2\log^{5/6}T\big)\\
+\sum_p\varepsilon(k; p, l_2, l_1)\log{p}\cdot e_1\Big(-\frac{1}{r_2}\log^2\frac{p}{x_2} \Big) &<- \sqrt{T}e_1\big(-c'_2\log^{5/6}T\big)
+\end{align}
+hold.
+\end{thm}
+
+\begin{thm}%2
+In case for "good" $k$ as above, if $\rho = \beta+i\gamma$ is a zero of an $L(s, \chi)$ \mod k with
+\begin{equation}
+\beta\geq \h, \;\; \gamma>0 \;\;, \chi(l)\neq 1
+\end{equation}
+there exist for
+\begin{equation}
+T>\max \bigg(c, e_1\Big( 4e_1(3k )\Big), e_1\Big( \frac{(20\pi)^6}{E(k)^6} \Big), e_1\Big(e_1(10|\rho|)\Big) \bigg)
+\end{equation}
+\begin{equation}
+Te_1\Big(-(\log T)^{5/6}\Big) < x_1,  x_2 <  Te_1\Big((\log T)^{11/15}\Big)
+\end{equation}
+such that both the inequalities
+\begin{align}
+\sum_p\varepsilon(k; p, l_2, l_1)\log{p}\cdot e_1\Big(-\frac{1}{r_1}\log^2\frac{p}{x_1} \Big) & > T^{\beta}e_1\big(-c'_2\log^{5/6}T\big)\\
+\sum_p\varepsilon(k; p, l_2, l_1)\log{p}\cdot e_1\Big(-\frac{1}{r_2}\log^2\frac{p}{x_2} \Big) &<- T^{\beta}e_1\big(-c'_2\log^{5/6}T\big)
+\end{align}
+hold.
+\end{thm}
+
+\begin{thm}
+For a $k$ such that 
+\begin{equation}
+l_2=1= {\rm quadratic \;\; residue \;\; mod\;\;} k
+\end{equation}
+and $T$ with 
+\begin{equation}
+T>\max\bigg(c, e_1\big(4e_1(3k)\big), e_1\Big(\frac{(20\pi)^6}{E(k)^6}\Big) \bigg)
+\end{equation}
+there exist numbers $U_1, U_2, U_3$ and $U_4$ with
+\begin{align}
+Te_1\Big(-(\log ^{6/7} T) \Big) \leq U_1 &< U_2 \leq Te_1\Big( (\log T)^{6/7} \Big)\\
+Te_1\Big(-(\log T)^{6/7} \Big) \leq U_3 &< U_4 \leq Te_1\Big( (\log T)^{6/7} \Big)
+\end{align}
+such that
+\begin{align}
+\sum_{U_1 \leq p \leq U_3} \varepsilon 
+\end{align}
+\end{thm}
+
+\subsection{Results from 4b ~\cite{1965.Turan_4}}
+More primes $\equiv l_1\mod k$ than $\equiv l_2 \mod k$ IF AND ONLY IF $l_1$ is an quadratic non-residue and $l_2$ is  quadratic residue $\mod k$
+
+Let $k$ satisfy the Haselgrove condition,
+in this paper, compare the residue classes 
+\begin{equation}
+\equiv l_1 \mod k\;\; {\rm and}\;\; \equiv l_2 \mod k
+\end{equation}
+when $l_1$ and $l_2$ are both quadratic non-residues, also N $\eta$ and a small positive constant $c$ with the condition
+\begin{equation}
+0<\eta<\min\Big( c, \Big(\frac{E(k)}{6\pi} \Big)^2 \Big)
+\end{equation}
+the non-vanishing of all $L(s, \chi)$ functions $\mod k$ for
+\begin{equation}
+\sigma>\h, \;\; |t|\leq \frac{2}{\sqrt \eta}
+\end{equation}
+And we assume without the loss of generality that 
+\begin{equation}
+E(k)\leq \frac{1}{k^{15}}
+\end{equation}
+
+\begin{thm}
+If for $k> c_2$ with $c_2$ satisfying the above conditions, then for
+\begin{equation}
+T>\max\bigg(c_3, e_1\Big( \frac{2}{\eta^4}e_1\big( \frac{1}{4}k^{10}\big)\Big) \bigg)
+\end{equation}
+and for quadratic non-residue $l_1$ and $l_2$ there are $x_1, x_2, \nu_1$ and $\nu_2$ with
+
+\begin{equation}
+T^{1-\sqrt \eta} \leq x_1, x_2 \leq T e_1(\log^{3/4}T)
+\end{equation}
+and
+\begin{equation}
+2\eta \log T\leq \nu_1, \nu_2 \leq 2\eta \log T +\sqrt{\log  T}
+\end{equation}
+so that 
+\begin{align}
+\sum_{p \equiv l_1 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_1}\log^2\frac{p}{x_1} \Big)-
+\sum_{p \equiv l_2 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_1}\log^2\frac{p}{x_1} \Big) &> T^{\h -4\sqrt \eta} \\
+\sum_{p \equiv l_1 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_2}\log^2\frac{p}{x_2} \Big)-
+\sum_{p \equiv l_2 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_2}\log^2\frac{p}{x_2} \Big) &< -T^{\h -4\sqrt \eta}??
+\end{align}
+\end{thm}
+
+\begin{thm}%2
+Under the assumptions of the previous Theorem there are $\mu_1, \mu_2, \mu_3, \mu_4$ with
+\begin{align*}
+T^{1 -4\sqrt \eta} \leq \mu_1&< \mu_2\leq T^{1 + 4\sqrt \eta} \\
+T^{1 -4\sqrt \eta} \leq \mu_3&< \mu_4\leq T^{1 + 4\sqrt \eta}
+\end{align*}
+so that
+\begin{align}
+\sum_{\substack{p\equiv l_1 \mod k\\ \mu_1 \leq p \leq \mu_2 }}1 - \sum_{\substack{p\equiv l_2 \mod k\\ \mu_1 \leq p \leq \mu_2 }} 1&> T^{\h - 5\sqrt \eta} \\
+\sum_{\substack{p\equiv l_1 \mod k\\ \mu_3 \leq p \leq \mu_4 }}1 - \sum_{\substack{p\equiv l_2 \mod k\\ \mu_3 \leq p \leq \mu_4 }} 1&<- T^{\h - 5\sqrt \eta} 
+\end{align}
+\end{thm}
+
+
+
+ \subsection{Results from 5b ~\cite{1965.Turan_5}}
+ \begin{thm}
+ If for a $\delta$ with $0<\delta < \frac{1}{10}$  and  for 
+ \begin{equation}
+ k>\max\big( c_1, e_1(\delta^{-20})\big)
+ \end{equation}
+ where no $L(s,\chi)$ with $\chi(l)\neq 1$, with conductor $k$, vanishes for
+ \begin{equation}
+ |s-1|\leq \h +4\delta
+ \end{equation}
+ then if
+ \begin{equation}
+ a>\max\big( c_2, e_1(k\log^3k)\big)
+ \end{equation}
+ and
+ \begin{equation}
+ b=e_1\big(\log^2a \cdot(\log_2 a)^2  \big)
+ \end{equation}
+ we have $x_1, x_2$ where
+ $$
+ a\leq x_1, x_2<b $$
+  such that
+ \begin{align}
+\sum_{\substack{n \leq x_1\\ n \equiv 1\mod k}} \Lambda(n)-  \sum_{\substack{n\leq x_1\\ n\equiv l\mod k}} \Lambda(n) &\geq x_1^{\frac{1}{4}\delta}\\
+\sum_{\substack{n \leq x_2\\ n \equiv 1\mod k}} \Lambda(n)-  \sum_{\substack{n\leq x_2\\ n\equiv l\mod k}} \Lambda(n) &\leq -x_2^{\frac{1}{4}\delta}
+ \end{align}
+ \end{thm}
+
+
+ \subsection{Results from 6b ~\cite{1966.Turan_6}}
+ This paper investigates "modified Abelian means"
+, i.e. to compare between the number of primes belonging to progression $\equiv l_1 \mod k$ and $\equiv l_2 \mod k$, where both $l_1$ and $l_2$ are quadratic residues $\mod k$ 
+\begin{thm}
+For $l_1$, $l_2$ with $(l_1, k)=(l_2, k)=2$, $l_1\not\equiv l_2 \mod k$ are both quadratic residues $\mod k$, and the [above] hold, then for every
+\begin{equation}
+T>e_2(\eta^{-3})
+\end{equation}
+there are $x_1, x_2$ and $\nu_1, \nu_2$ with
+\begin{align}
+T^{1-\sqrt\eta}\leq x_1,& x_2 \leq T\log T\\
+2\eta \log T\leq \nu_1, & \nu_2\leq 2\eta \log T+\log_2 T
+\end{align}
+such that
+\begin{align}
+\sum_{p \equiv l_1 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_1}\log^2\frac{p}{x_1} \Big)-
+\sum_{p \equiv l_2 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_1}\log^2\frac{p}{x_1} \Big) &> T^{\h -2\sqrt \eta} \\
+\sum_{p \equiv l_1 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_2}\log^2\frac{p}{x_2} \Big)-
+\sum_{p \equiv l_2 \mod k} \log{p}\cdot e_1\Big(-\frac{1}{\nu_2}\log^2\frac{p}{x_2} \Big) &< -T^{\h -2\sqrt \eta}
+\end{align}
+\end{thm}
+
+Anagouly in short intervals we have:
+\begin{thm}%2
+Under the assumptions of the previous Theorem there are $\mu_1, \mu_2, \mu_3, \mu_4$ with
+\begin{align*}
+T^{1 -4\sqrt \eta} \leq \mu_1&< \mu_2\leq T^{1 + 4\sqrt \eta} \\
+T^{1 -4\sqrt \eta} \leq \mu_3&< \mu_4\leq T^{1 + 4\sqrt \eta}
+\end{align*}
+so that
+\begin{align}
+\sum_{\substack{p\equiv l_1 \mod k\\ \mu_1 \leq p \leq \mu_2 }}1 - \sum_{\substack{p\equiv l_2 \mod k\\ \mu_1 \leq p \leq \mu_2 }} 1&> T^{\h - 3\sqrt \eta} \\
+\sum_{\substack{p\equiv l_1 \mod k\\ \mu_3 \leq p \leq \mu_4 }}1 - \sum_{\substack{p\equiv l_2 \mod k\\ \mu_3 \leq p \leq \mu_4 }} 1&<- T^{\h - 3\sqrt \eta} 
+\end{align}
+\end{thm}
+
+
+ \subsection{Results from 7b ~\cite{1972.Turan_7}}
+\begin{thm}
+There exist numbers $U_1, U_2, U_3 , U_4$ for $T>c$ with
+\begin{align}
+\log_3 T \leq U_2 e_1(-\log^{15/16}{U_2})\leq U_1 < U_2 \leq T \\
+\log_3 T \leq U_4 e_1(-\log^{15/16}{U_4})\leq U_3 < U_4 \leq T 
+\end{align}
+such that
+\begin{align}
+\sum_{\substack{U_1<p<U_2\\ p\equiv 1 \mod 4}}\log p - \sum_{\substack{U_1<p<U_2\\ p\equiv 3 \mod 4}}\log p& >\sqrt{U_2}\\
+\sum_{\substack{U_1<p<U_3\\ p\equiv 1 \mod 4}}\log p - \sum_{\substack{U_1<p<U_4\\ p\equiv 3 \mod 4}}\log p &<-\sqrt{U_4}
+\end{align}
+\end{thm}
+
+%%%%%%%%%%%%
+%BIBLIOGRAPHY
+%%%%%%%%%%%%
+
+
+\section{Ponste\=a}
+%1965
+In ~\cite{1965.Knapowski} , two theorems are proven:
+\begin{thm}
+For any $l_1 \neq l_2$ among $3, 5, 7$ and $0<\delta<c_5$, we have the inequality
+\begin{equation}
+\max_{\delta\leq x \leq \delta ^{1/3}} \Bigg{|} \sum_{p \equiv l_1 \mod 8} {e^{-px}} - \sum_{p \equiv l_2 \mod 8}{e^{-px}}\Bigg{|} \geq \frac{1}{\sqrt \delta} \exp\bigg(\frac{23\log(1/\delta)log_3(1/\delta)}{log_2({1/\delta})}\bigg)
+\end{equation}
+\end{thm}
+
+\begin{thm}
+For $l \neq 1, k=4$ \emph{or} $8$ and $0<\delta< c_6$,
+\begin{equation}
+\max_{\delta\leq x \leq \delta ^{1/3}} \Bigg{|} \sum_{p \equiv 1 \mod  k} {e^{-px}} - \sum_{p \equiv l \mod k}{e^{-px}}\Bigg{|} \geq \frac{1}{\sqrt \delta} \exp\bigg(\frac{23\log(1/\delta)log_3(1/\delta)}{log_2({1/\delta})}\bigg)
+\end{equation}
+\end{thm}
+
+
+
+~\cite{1971.Stark}
+~\cite{1972.Turan_7}
+
+~\cite{1976.Knapowski_(pi-li)_2}
+
+~\cite{1977.Pintz_3a}
+
+~\cite{1978.Pintz_4a}
+
+~\cite{1979.Besenfelder_1}
+
+~\cite{1979.Pintz_1a}
+
+~\cite{1980.Bentz}
+
+~\cite{1980.Besenfelder_2}
+
+~\cite{1980.Pintz_2a}
+
+~\cite{1980.Pintz_5a}
+
+~\cite{1980.Pintz_6a}
+
+~\cite{1982.Bentz}
+
+~\cite{1984.Kaczorowski_1a}
+
+~\cite{1984.Kaczorowski_2a}
+
+~\cite{1984.Pintz_1}
+
+~\cite{1984.Pintz_2}
+
+~\cite{1986.Kaczorowski_1}
+
+~\cite{1987.Kaczorowski_2}
+
+~\cite{1987.Kaczorowski_3a}
+
+~\cite{1988.Kaczorowski_4a}
+
+~\cite{1989.Szydlo_1}
+
+~\cite{1989.Szydlo_2}
+
+~\cite{1989.Szydlo_3}
+
+~\cite{1993.Kaczorowski}
+
+~\cite{1994.Rubinstein}
+
+~\cite{1995.Kaczorowski}
+
+~\cite{1996.Kaczorowski}
+
+\newpage
+\section{Bibliography}
+\begin{biblist}
+
+
+
+%---------------------------------------------------------------------------------------
+\bib{1853.Chebyshev}{article}{
+    author={Chebyshev, P.},
+     title={\href{run:bib/1853.Chebyshev.pdf}
+            {Lettre de M. le professeur Tch\'{e}bychev a M. Fuss, sur un nouveau th\'{e}or\`eme r\'elatif aux nombres premiers contenus dans la formes 4n+1 et 4n+3.}},
+      date={1853},
+   journal={Bull. de la Classe phys. math. de l'Acad. Imp. des Sciences St. Petersburg},
+    volume={11},
+     pages={208},
+} 
+%\annotation{Chebyshev observes, as illustrated in this letter,\\ 
+%\begin{enumerate}
+%\item The series 
+%$$
+%e^{-30}-e^{-50}+e^{-70}+e^{-110}-e^{-130}-e^{-170}+e^{-190}+e^{-230}+\hdots
+%$$
+%diverges to infinity.
+%\item More generally, for any 
+%\end{enumerate}
+%}
+%---------------------------------------------------------------------------------------
+\bib{1891.Phragmen}{article}{
+    author={Phragm\'en, P.},
+     title={\href{run:bib/1891.Phragmen.pdf}
+             {Sur le logarithme int\'{e}gral et la fonction $f(x)$ de Riemann}},
+   year = {1891}
+   journal={\"{O}fversigt af Kongl. Vetenskaps-Akademiens F\"{o}handlingar.},
+    volume={48},
+     pages={599-616},
+}
+%---------------------------------------------------------------------------------------
+\bib{1905.Landau}{article}{
+    author={Landau, E.},
+     title={\href{run:bib/1905.Landau.pdf}
+             {\"{U}ber einen Satz von Tschebyschef}},
+   journal = {Mathematische Annalen},
+   publisher = {Springer Berlin / Heidelberg},
+   issn = {0025-5831},
+   keyword = {Mathematics and Statistics},
+   pages = {527-550},
+   volume = {61},
+   issue = {4},
+   year = {1905}
+}
+%---------------------------------------------------------------------------------------
+\bib{1918.Landau.1}{article}{
+    author={Landau, E.},
+     title={\href{run:bib/1918.Landau.1.pdf}
+             {\"{U}er einige \"{a}ltere Vermutungen und Behauptungen in der Primzahltheorie}},
+   year = {1918}
+   journal={Math. Zeitschr.},
+    volume={1},
+     pages={1-24},
+}
+%---------------------------------------------------------------------------------------
+\bib{1918.Landau.2}{article}{
+    author={Landau, E.},
+     title={\href{run:bib/1918.Landau.2.pdf}
+             {\"{U}er einige \"{a}ltere Vermutungen und Behauptungen in der Primzahltheorie}},
+   year = {1918}
+   journal={Zweite Abhandlung},
+    volume={ibid.},
+     pages={213-219},
+}
+%---------------------------------------------------------------------------------------
+\bib{1918.Littlewood}{article}{
+    author={Littlewood, J. E. },
+     title={\href{run:bib/1918.Littlewood.pdf}
+             {Sur la distribution des nombres premiers}},
+  date={22 June 1914},
+  journal={Comptes Rendus}
+}
+%---------------------------------------------------------------------------------------
+\bib{1930.Polya}{article}{
+    author={P\'olya, G.},
+     title={\href{run:bib/1930.Polya.pdf}
+             {\"{U}ber das Vorzeichen des Restgliedes im Primzahltheorie}},
+  date={1930},
+   journal={G\"{o}tt. Nachr.},
+     pages={19-27},
+}
+%---------------------------------------------------------------------------------------
+\bib{1933.Skewes.I}{article}{
+    author={Skewes, S.},
+     title={\href{run:bib/1933.Skewes.I.pdf}
+             {On the difference $\pi(x)-{\li}(x)$ (I)}},
+  date={1933},
+  journal={Math. Tables and other aids to computation}
+  volume={13}
+  pages={272-284}
+}
+%---------------------------------------------------------------------------------------
+\bib{1936.Ingham}{article}{
+    author={Ingham, A.E.},
+     title={\href{run:bib/1936.Ingham.pdf}
+             {A note on the distribution of primes}},
+  date={1936},
+  journal={Acta Arith.}
+  volume={1}
+  pages={201-211}
+}
+%---------------------------------------------------------------------------------------
+\bib{1941.Wintner}{article}{
+    author={Wintner, A.},
+     title={\href{run:bib/1941.Wintner.pdf}
+             {On the distribution function of the remainder term of the Prime Number Theorem}},
+  date={1941},
+}
+%---------------------------------------------------------------------------------------
+\bib{1945.Siegel}{article}{
+    author={Siegel, C. L.},
+     title={\href{run:bib/1945.Siegel.pdf}
+             {On the zeros of the Dirichlet L-functions}},
+  date={1945},
+}
+%---------------------------------------------------------------------------------------
+\bib{1950.Rosser}{article}{
+    author={Rosser, J. B.},
+     title={\href{run:bib/1950.Rosser.pdf}
+             {Real roots of real Dirichlet L-series}},
+  date={1950},
+}
+%---------------------------------------------------------------------------------------
+\bib{1955.Skewes.II}{article}{
+     author={Skewes, S.},
+     title={\href{run:bib/1955.Skewes.II.pdf}
+             {On the difference $\pi(x)-{\li}(x)$ (II)}},
+  date={1955},
+  journal={Math. Tables and other aids to computataion}
+  volume={13}
+  pages={272-284}
+}
+%---------------------------------------------------------------------------------------
+\bib{1957.Leech}{article}{
+    author={Leech, J.},
+     title={\href{run:bib/1957.Leech.pdf}
+             {Note on the distribution of prime numbers}},
+  date={1957},
+  journal={ J. London Math. Soc.}
+  volume={ 32} 
+  pages={56Ð58}
+}
+%---------------------------------------------------------------------------------------
+\bib{1959.Shanks}{article}{
+    author={Shanks, D.},
+     title={\href{run:bib/1959.Shanks.pdf}
+             {Quadratic Residues and the Distribution of Primes}},
+  date={1959},
+  journal={Math. Comp. }
+  volume={13} 
+  pages={272Ð284}
+}
+%---------------------------------------------------------------------------------------
+\bib{1961.Knaposwki}{article}{
+    author={Knaposwki, S.},
+     title={\href{run:bib/1961.Knapowski.pdf}
+             {On sign-changes in the remainder-term in the prime-number formula}},
+  date={1961},
+  journal={Journ. Lond. Math. Soc.} 
+}
+%---------------------------------------------------------------------------------------
+\bib{1962.Knaposwki_(pi-li)_1}{article}{
+    author={Knaposwki, S.},
+     title={\href{run:bib/1962.Knapowski_(pi-li)_1.pdf}
+             {On sign changes of $\pi(x)-$\li$(x)$ }},
+  date={1962},
+}
+%---------------------------------------------------------------------------------------
+\bib{1962.Knaposwki_1}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1962.Knapowski_1.pdf}
+             {Comparative Prime-Number Theory I}},
+  date={1962},
+  journal={Acta Math. Acad. Sci. Hung.},
+  volume={13},
+   pages={299-314},
+}
+%---------------------------------------------------------------------------------------
+\bib{1962.Knaposwki_2}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1962.Knapowski_2.pdf}
+             {Comparative Prime-Number Theory II}},
+  date={1962},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={13},
+   pages={315-342},
+}
+%---------------------------------------------------------------------------------------
+\bib{1962.Knaposwki_3}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1962.Knapowski_3.pdf}
+             {Comparative Prime-Number Theory III}},
+  date={1962},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={13},
+   pages={343-364},
+}
+%---------------------------------------------------------------------------------------
+\bib{1963.Knaposwki_4}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1963.Knapowski_4.pdf}
+             {Comparative Prime-Number Theory IV}},
+  date={1963},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={14},
+   pages={31-42},
+}
+%---------------------------------------------------------------------------------------
+\bib{1963.Knaposwki_5}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1963.Knapowski_5.pdf}
+             {Comparative Prime-Number Theory V}},
+  date={1963},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={14},
+   pages={43-63},
+}
+%---------------------------------------------------------------------------------------
+\bib{1963.Knaposwki_6}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1963.Knapowski_6.pdf}
+             {Comparative Prime-Number Theory VI}},
+  date={1963},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={14},
+   pages={65-78},
+}
+%---------------------------------------------------------------------------------------
+\bib{1963.Knaposwki_7}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1963.Knapowski_7.pdf}
+             {Comparative Prime-Number Theory VII}},
+  date={1963},
+    journal={Acta Math. Acad. Sci. Hung.},
+  volume={14},
+   pages={241-250},
+}
+%---------------------------------------------------------------------------------------
+\bib{1963.Knaposwki_8}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1963.Knapowski_8.pdf}
+             {Comparative Prime-Number Theory VIII}},
+  date={1963},
+  journal={Acta Math. Acad. Sci. Hung.},
+  volume={14},
+   pages={251-268},
+}
+%---------------------------------------------------------------------------------------
+\bib{1964.Turan_1}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1964.Turan_1.pdf}
+             {Further Developments in the Comparative Prime-Number Theory I}},
+  date={1964},
+  journal={Acta. Arith.}
+  volume={9}
+  pages={23-40}
+}
+%---------------------------------------------------------------------------------------
+\bib{1964.Turan_2}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1964.Turan_2.pdf}
+             {Further Developments in the Comparative Prime-Number Theory II}},
+  date={1964},
+  journal={Acta. Arith.}
+  volume={10}
+  pages={293-313}
+}
+%---------------------------------------------------------------------------------------
+\bib{1965.Turan_3}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1965.Turan_3.pdf}
+             {Further Developments in the Comparative Prime-Number Theory III}},
+  date={1965},
+  journal={Acta. Arith.}
+  volume={?}
+  pages={23-40}
+}
+%---------------------------------------------------------------------------------------
+\bib{1965.Turan_4}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1965.Turan_4.pdf}
+             {Further Developments in the Comparative Prime-Number Theory IV}},
+  date={1965},
+}
+%---------------------------------------------------------------------------------------
+\bib{1965.Turan_5}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1965.Turan_5.pdf}
+             {Further Developments in the Comparative Prime-Number Theory V}},
+  date={1965},
+}
+%---------------------------------------------------------------------------------------
+\bib{1965.Knapowski}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1965.Knapowski.pdf}
+             {On an assertion of \v{C}eby\v{s}ev}},
+  date={1965},
+}
+%---------------------------------------------------------------------------------------
+\bib{1966.Turan_6}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1966.Turan_6.pdf}
+             {Further Developments in the Comparative Prime-Number Theory VI}},
+  date={1966},
+}
+%---------------------------------------------------------------------------------------
+\bib{1967.Katai}{article}{
+    author={K\'atai, S.},
+     title={\href{run:bib/1967.Katai.pdf}
+             {On investigations in the comparative prime number theory}},
+  date={1967},
+}
+%---------------------------------------------------------------------------------------
+\bib{1971.Stark}{article}{
+    author={Stark, H.},
+     title={\href{run:bib/1971.Stark.pdf}
+             {A problem in comparative prime number theory}},
+  date={1971},
+}
+%---------------------------------------------------------------------------------------
+\bib{1972.Turan_7}{article}{
+    author={Knaposwki, S.},
+    author={Tur\'an, P.},
+     title={\href{run:bib/1972.Turan_7.pdf}
+             {Further Developments in the Comparative Prime-Number Theory VII}},
+  date={1972},
+  journal={Acta. Arith.}
+  volume={21}
+  pages={193-201}
+}
+%---------------------------------------------------------------------------------------
+\bib{1976.Knapowski_(pi-li)_2}{article}{
+    author={Knaposwki, S.},
+     title={\href{run:bib/1976.Knapowski_(pi-li)_2.pdf}
+             {On sign changes of $\pi(x)-\li(x)$. II}},
+  date={1976},
+}
+%---------------------------------------------------------------------------------------
+\bib{1977.Pintz_3a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1977.Pintz_3a.pdf}
+             {On the remainder term of the prime number formula III. Sign changes of $\pi - \li(x)$}},
+  date={1980},
+}
+%---------------------------------------------------------------------------------------
+\bib{1978.Pintz_4a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1978.Pintz_4a.pdf}
+             {On the remainder term of the prime number formula IV. Sign changes of $\pi - \li(x)$}},
+  date={1980}
+  }
+ %---------------------------------------------------------------------------------------
+\bib{1979.Besenfelder_1}{article}{
+    author={Besenfelder, J.},
+     title={\href{run:bib/1979.Besenfelder_1.pdf}
+             {\"{U}ber eine Vermutung von Tschebyschef. I.}},
+  date={1979},
+}
+%---------------------------------------------------------------------------------------
+\bib{1979.Pintz_1a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1979.Pintz_1a.pdf}
+             {On the remainder term of the prime number formula I. On a problem of Littlewood}},
+  date={1979},
+  journal={Acta Arith.} 
+  volume={36},
+  pages={27-51}
+}
+%---------------------------------------------------------------------------------------
+\bib{1980.Bentz}{article}{
+    author={Bentz, H.},
+    author={Pintz, J.},
+     title={\href{run:bib/1980.Bentz.pdf}
+             {Quadratic Residues and the Distribution of Prime Numbers}},
+  date={1980},
+}
+%---------------------------------------------------------------------------------------
+\bib{1980.Besenfelder_2}{article}{
+    author={Besenfelder, J.},
+     title={\href{run:bib/1980.Besenfelder_2.pdf}
+             {\"{U}ber eine Vermutung von Tschebyschef. II.}},
+  date={1980},
+}
+%---------------------------------------------------------------------------------------
+\bib{1980.Pintz_2a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1980.Pintz_2a.pdf}
+             {On the remainder term of the prime number formula II. On a problem of Ingham}},
+  date={1980},
+}
+%---------------------------------------------------------------------------------------
+\bib{1980.Pintz_5a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1980.Pintz_5a.pdf}
+             {On the remainder term of the prime number formula V. Effective Mean Value Theorems}},
+  date={1980},
+  journal={Studia Sci. Math. Hungar.} 
+  volume={15},
+  pages={215-223}
+}
+%---------------------------------------------------------------------------------------
+\bib{1980.Pintz_6a}{article}{
+    author={Pintz, J.},
+     title={\href{run:bib/1980.Pintz_6a.pdf}
+             {On the remainder term of the prime number formula VI. Effective Mean Value Theorems}}
+             date={1980},
+}
+%---------------------------------------------------------------------------------------
+\bib{1982.Bentz}{article}{
+    author={Bentz, Has-J.},
+     title={\href{run:bib/1982.Bentz.pdf}
+             {Discrepancies in the Distribution of Prime Numbers}},
+  date={1982},
+}
+%---------------------------------------------------------------------------------------
+\bib{1984.Kaczorowski_1a}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1984.Kaczorowski_1a.pdf}
+             {On sign-changes in the remainder-term of the prime-number formula, I.}},
+  date={1984},
+}
+%---------------------------------------------------------------------------------------
+\bib{1984.Kaczorowski_2a}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1984.Kaczorowski_2a.pdf}
+             {On sign-changes in the remainder-term of the prime-number formula, II.}},
+  date={1985},
+}
+%---------------------------------------------------------------------------------------
+\bib{1984.Pintz_1}{article}{
+    author={Pintz, J.},
+    author={Salerno, S.},
+     title={\href{run:bib/1984.Pintz_1.pdf}
+             {Irregularities in the distribution of primes in arithmetic progressions, I.}},
+  date={1984},
+}
+%---------------------------------------------------------------------------------------
+\bib{1984.Pintz_2}{article}{
+    author={Pintz, J.},
+    author={Salerno, S.},
+     title={\href{run:bib/1984.Pintz_2.pdf}
+             {Irregularities in the distribution of primes in arithmetic progressions, II.}},
+  date={1984},
+}
+%---------------------------------------------------------------------------------------
+\bib{1986.Kaczorowski_1}{article}{
+    author={Kaczorowski, J.},
+    author={Pintz, J.},
+     title={\href{run:bib/1986.Kaczorowski_1.pdf}
+             {Oscillatory Properties of arithmetical functions. I.}},
+  date={1986},
+}
+%---------------------------------------------------------------------------------------
+\bib{1987.Kaczorowski_3a}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1987.Kaczorowski_3a.pdf}
+             {On sign-changes in the remainder-term of the prime-number formula, III.}},
+  date={1987},
+}
+%---------------------------------------------------------------------------------------
+\bib{1987.Kaczorowski_2}{article}{
+    author={Kaczorowski, J.},
+    author={Pintz, J.},
+     title={\href{run:bib/1987.Kaczorowski_2.pdf}
+            {Oscillatory Properties of arithmetical functions. II.}},
+  date={1987},
+}
+%---------------------------------------------------------------------------------------
+\bib{1988.Kaczorowski_4a}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1988.Kaczorowski_4a.pdf}
+             {On sign-changes in the remainder-term of the prime-number formula, IV.}},
+  date={1988},
+}
+%---------------------------------------------------------------------------------------
+\bib{1989.Szydlo_1}{article}{
+    author={Szyd\l o, B.},
+     title={\href{run:bib/1989.Szydlo_1.pdf}
+            {\"Uber Vorzeichenwechsel einiger arithmetischer Funktionen. I}},
+  date={1989},
+}
+%---------------------------------------------------------------------------------------
+\bib{1989.Szydlo_2}{article}{
+    author={Szyd\l o, B.},
+     title={\href{run:bib/1989.Szydlo_2.pdf}
+            {\"Uber Vorzeichenwechsel einiger arithmetischer Funktionen. II}},
+  date={1989},
+}
+
+%---------------------------------------------------------------------------------------
+\bib{1989.Szydlo_3}{article}{
+    author={Szyd\l o, B.},
+     title={\href{run:bib/1989.Szydlo_3.pdf}
+            {\"Uber Vorzeichenwechsel einiger arithmetischer Funktionen. III}},
+  date={1989},
+}
+%---------------------------------------------------------------------------------------
+\bib{1993.Kaczorowski}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1993.Kaczorowski.pdf}
+            {A contribution to the Shanks-R\'enyi race problem}},
+  date={1993},
+}
+%---------------------------------------------------------------------------------------
+\bib{1994.Rubinstein}{article}{
+    author={Rubinstein, M.},
+    author={Sarnak, P.},
+     title={\href{run:bib/1994.Rubinstein.pdf}
+            {Chebyshev's Bias}},
+  date={1994},
+}
+%---------------------------------------------------------------------------------------
+\bib{1995.Kaczorowski}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1995.Kaczorowski.pdf}
+            {On the Shanks-R\'enyi race problem mod 5}},
+  date={1995},
+}
+%---------------------------------------------------------------------------------------
+\bib{1996.Kaczorowski}{article}{
+    author={Kaczorowski, J.},
+     title={\href{run:bib/1996.Kaczorowski.pdf}
+            {On the Shanks-R\'enyi race problem}},
+  date={1996},
+}
+%---------------------------------------------------------------------------------------
+\bib{2000.Bays}{article}{
+    author={Bays, C.}
+    author={Hudson, R.}
+     title={\href{run:bib/2000.Bays.pdf}
+            {Zeroes of Dirichlet L-Functions and Irregularities in the Distribution of Primes}},
+  date={2000},
+}
+%---------------------------------------------------------------------------------------
+\bib{2000.Feuerverger}{article}{
+    author={Feuerverger, A.},
+    author={Martin, G.},
+     title={\href{run:bib/2000.Feuerverger.pdf}
+            {Biases in the ShanksÐ-R\'enyi Prime Number Race}},
+  date={2000},
+}
+%---------------------------------------------------------------------------------------
+\bib{2000.Ng}{article}{
+    author={Ng, N.},
+     title={\href{run:bib/2000.Ng.pdf}
+            {Limiting processes and Zeros of Artin L-Functions,}},
+  date={2000},
+}
+%---------------------------------------------------------------------------------------
+\bib{2000.Puchta}{article}{
+    author={Puchta, J.-C.},
+     title={\href{run:bib/2000.Puchta.pdf}
+            {On large oscillations of the remainder of the prime number theorems}},
+  date={2000},
+}
+%---------------------------------------------------------------------------------------
+\bib{2001.Bays}{article}{
+    author={Bays, C.},
+    author={Ford, K.},
+    author={Hudson, R. H.}, 
+    author={Rubinstein, M.},
+         title={\href{run:bib/2001.Bays.pdf}
+            {Zeros of Dirichlet L-functions near the Real Axis and Chebyshev's Bias}},
+  date={2001},
+}
+%---------------------------------------------------------------------------------------
+\bib{2002.Ford_1}{article}{
+    author={Ford, K.},
+    author={Konyagin, S.},
+         title={\href{run:bib/2002.Ford_1.pdf}
+            {The Prime Number Race and zeros off Dirichlet L-Functions}},
+  date={2002},
+}
+%---------------------------------------------------------------------------------------
+\bib{2002.Ford_2}{article}{
+    author={Ford, K.},
+    author={Konyagin, S.},
+         title={\href{run:bib/2002.Ford_2.pdf}
+            {Chebyshev's conjecture and the prime number race}},
+  date={2002},
+}
+%---------------------------------------------------------------------------------------
+\bib{2002.Martin}{book}{
+    author={Martin, G.},
+         title={\href{run:bib/2002.Martin.pdf}
+            {Asymmetries in the Shanks-R\'enyi prime number race}},
+  date={2002},
+}
+%---------------------------------------------------------------------------------------
+\bib{2004.Schlage-Puchta}{article}{
+    author={Schlage-Puchta, J.-C.},
+         title={\href{run:bib/2004.Schlage-Puchta.pdf}
+            {Sign changes of $\pi(x; q, 1)-\pi(x; q, a)$}},
+  date={2004},
+}
+%---------------------------------------------------------------------------------------
+\bib{2006.Granville}{article}{
+    author={Granville, A.},
+    author={Martin, G.},
+     title={\href{run:bib/2006.Granville.pdf}
+            {Prime Number Races}},
+  date={2006},
+}
+%---------------------------------------------------------------------------------------
+\bib{2010.Ford}{article}{
+    author={Ford, K.},
+    author={Sneed, J.},
+     title={\href{run:bib/2010.Ford.pdf}
+            {Chebyshev's Bias for Products of Two Primes}},
+  date={2010},
+}
+%---------------------------------------------------------------------------------------
+\bib{201x. Fiorilli}{article}{
+    author={Fiorilli, D.},
+    author={Martin, G .},
+     title={\href{run:bib/2011x.Fiorilli.pdf}
+            {Inequities in the Shanks-R\'enyi prime number race: an asymptotic formula for the densities}},
+  date={201x},
+}
+%---------------------------------------------------------------------------------------
+\bib{201x. Lamzouri_1i}{article}{
+    author={Lamzouri, Y.},
+     title={\href{run:bib/2011x.Lamzouri_1.pdf}
+            {Prime number races with three or more competitors.}},
+  date={201x},
+}
+%---------------------------------------------------------------------------------------
+\bib{201x. Lamzouri_2}{article}{
+    author={Lamzouri, Y.},
+     title={\href{run:bib/2011x.Lamzouri_2.pdf}
+            {Large deviations of the limiting distribution in the Shanks-R\'enyi prime number race. 
+}},
+  date={201x},
+  }
+\end{biblist}
+\end{document}

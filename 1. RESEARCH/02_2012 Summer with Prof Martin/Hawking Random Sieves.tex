@@ -1,0 +1,89 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath,amssymb,amsthm,geometry}
+\usepackage{amsrefs}
+
+    \usepackage[pdftex]{graphicx}
+    \pdfcompresslevel=9
+    \usepackage[colorlinks=true, pdfstartview=FitH, linkcolor=blue,
+        citecolor=blue, urlcolor=blue]{hyperref}
+    
+
+\geometry{left=1in, right=1in, top=.75in, bottom=.75in}
+
+    \newfont{\footsc}{cmcsc10 at 8truept}
+    \newfont{\footbf}{cmbx10 at 8truept}
+    \newfont{\footrm}{cmr10 at 10truept}
+    \title[Hawking Random Sieves]{...}
+
+\author{Greg Martin}
+\author{Justin Scarfy}
+\address{University of British Columbia\\ Department of Mathematics \\ Room 121\\ 1984 Mathematics Road\\Vancouver, BC Canada V6T 1Z2}
+\email{gerg@math.ubc.ca} 
+\email{scarfy@ugrad.math.ubc.ca}
+
+\thanks{The second of us, an undergraduate student at the University of British Columbia, is very grateful for Professor Greg Martin's  introduction to this fascinating topic, and for his guidance and continuous encouragement throughout this project.}
+
+\subjclass[2010]{11N13 (11Y35)}
+
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\fp}[1]{\{ #1 \}}
+\newcommand{\h}{\frac 1 2}
+\renewcommand{\mod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\Li}{\rm Li}
+\newcommand{\Var}{\rm Var}
+\newcommand{\Arg}{\rm Arg}
+\newcommand{\li}{\rm li}
+\newcommand{\ord}{\rm ord}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\Prob}{{\mathbb P}}
+\newcommand{\bigO}[1]{{\cal O}\left(#1\right)}
+\newcommand{\littleo}[1]{o\left(#1\right)}
+\newcommand{\GF}[1]{{\mathbb F}_{#1}}
+\newcommand{\Bhg}[2]{\ensuremath{B^\ast_{#1}{[}#2{]}}}
+\newcommand{\Bh}[1]{\ensuremath{B_{#1}}}
+\newcommand{\cA}{{\cal A}}
+\newcommand{\cB}{{\cal B}}
+\newcommand{\cK}{{\cal K}}
+\newcommand{\Ruzsa}[3]{{\tt{Ruzsa}}(#1,#2,#3)}
+\newcommand{\Bose}[4]{{\tt{Bose}}_{#1}(#2,#3,#4)}
+\newcommand{\Singer}[4]{{\tt{Singer}}_{#1}(#2,#3,#4)}
+\newcommand{\sgn}{\text{sgn}}
+\newcommand{\p}{\mathfrak p}
+
+
+
+
+\numberwithin{equation}{section}%{subsection} %sets equation numbers <chapter>.<section>.<index>
+
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{cnj}[thm]{Conjecture}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{rmk}[thm]{Remark}
+\newtheorem{xmp}[thm]{Example}
+\newtheorem{pbm}[thm]{Problem}
+
+\numberwithin{thm}{section} %sets equation numbers <chapter>.<section>.<index>
+
+
+\begin{document}
+\begin{abstract}
+\end{abstract}
+\maketitle
+%1. Introduction
+\section{Introduction}\label{intro section}
+
+\section{References}
+\begin{biblist}
+
+\end{biblist}
+\end{document}

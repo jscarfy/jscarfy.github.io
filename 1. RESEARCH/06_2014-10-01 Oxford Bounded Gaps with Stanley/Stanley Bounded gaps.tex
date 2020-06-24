@@ -1,0 +1,181 @@
+\documentclass[12pt,amsfont]{amsart}
+\usepackage{amssymb, fullpage, amsfonts, euscript, times, hyperref}
+\usepackage{ulem}
+\usepackage{color}\definecolor{Blue}{rgb}{0,0,1}
+\usepackage{color}\definecolor{Red}{rgb}{1,0,0}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{bbm}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\usepackage[OT2,T1]{fontenc}
+
+\DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
+\DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
+\vfuzz=2pt
+\begin{document}
+\thispagestyle{empty}
+\parindent=0pt
+\parskip=4pt
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\renewcommand{\theenumi}{(\roman{enumi})}
+
+
+\newcommand{\legendre}[2]{\genfrac{(}{)}{}{}{#1}{#2}}
+\newcommand{\li}{\mathop{\rm li}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\renewcommand{\pmod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\bS}{{\mathbb S}}
+\newcommand{\bC}{{\mathbb C}}
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bZ}{{\mathbb Z}}
+\newcommand{\bF}{{\mathbb F}}
+\newcommand{\bQ}{{\mathbb Q}}
+\newcommand{\Ha}{{\mathbb H}}
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bB}{\mathbb{B}}
+\renewcommand{\mod}[1]{{\ifmmode\text{\rm\ (mod~$#1$)}\else\discretionary{}{}{\hbox{ }}\rm(mod~$#1$)\fi}}
+\newcommand{\Tor}{{\operatorname{Tor}}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Sel}{\operatorname{Sel}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Avg}{\operatorname{Avg}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Alex}{\operatorname{Alex}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\R}{\mathcal{R}}
+
+
+
+\numberwithin{equation}{section}%{subsection} %sets equation numbers <chapter>.<section>.<index>
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{pbm}[theorem]{Problem}
+\newtheorem{pro}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{cnj}[theorem]{Conjecture}
+\newtheorem{dfn}[theorem]{Definition}
+\newtheorem{thm}[theorem]{Theorem}
+\newtheorem{rmk}[theorem]{Remark}
+\newtheorem{xmp}[theorem]{Example}
+\newtheorem{exe}[theorem]{Exercise}
+\newenvironment{solution}
+               {\let\oldqedsymbol=\qedsymbol
+                \renewcommand{\qedsymbol}{$\blacktriangle$}
+                \begin{proof}[\bf Solution]} 
+               {\end{proof}
+                \renewcommand{\qedsymbol}{\oldqedsymbol}}
+\author{Stanley Yao Xiao \& Justin Scarfy}
+
+\numberwithin{theorem}{section} %sets equation numbers <chapter>.<section>.<index>
+\title{\bf\\LSM-CMI Research School Notes on \\Bounded Gaps Between Primes\\ September 22--16, 2014}
+\begin{abstract}
+This compilation contains all the lecture notes taken at the LMS-CMI Research School in ``Bounded Gaps Between Primes'' held at the Oxford Mathematical Institute between September 22 and 26, 2014.  We would like to thank the London Mathematical Society, the Clay Math Institute, for putting together this wonderful research school and providing us funding to participate this event, for the speakers presenting the recent breakthroughs in analytic number theory and sieve methods, and for the University of Oxford and specifically the Sommerville College for its hospitality.   
+\end{abstract}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\newpage
+%%%1.
+\section{Introduction to prime number theory.\\ $\zeta$- and $L$-functions, the prime number theorem\\by Andrew Granville}\label{1}
+
+\subsection{Lecture 1}
+
+Euclid proved over two thousand years ago that there exist infinitely many prime numbers. A novel way of proving this result is via the following argument: suppose there exists a sequence of positive integers 
+\[1 < n_1 < n_2 < \cdots , \gcd(n_i, n_j) = 1 \forall i \ne j.\]
+Then there exists infinitely many primes. \\ \\
+To see this, suppose such a sequence exists. Then by the fundamental theorem of arithmetic, we can choose a prime divisor $p_j$ for each $n_j$. Then since $\gcd(n_i, n_j) = 1$ for all $i \ne j$, it follows that $p_i \ne p_j$ for all $i \ne j$, hence the number of primes is infinite. \\ \\
+How do we construct such a sequence? We define the map
+\[x \mapsto x^2 - x + 1.\]
+Now start with any integer $n_1 > 1$ and define $n_{j+1} = n_j^2 - n_j + 1$. Now suppose $n_i < n_j$. Most certainly, we have
+\[n_i \equiv 0 \pmod{n_i},\]
+which implies that
+\[n_{i+1} \equiv 1 \pmod{n_i}.\]
+Now, 
+\[n_{i+2} = n_{i+1}^2 - n_{i+1} + 1 \equiv 1 \pmod{n_i},\]
+and from here we can see that
+\[n_j \equiv 1 \pmod{n_i}\]
+for all $j > i$. Thus, $\gcd(n_i, n_j) = 1$. \\ \\
+The key to this argument is that $0$ needs to be stuck in a loop. For instance, we could start with the map
+\[x \mapsto x^2 - 2x + 2, \text{ } 0 \rightarrow 2, \]
+so we need a seed that is odd. \\ \\
+Gauss (at 15 years old) guessed that at around $x$, the density of primes is around $1/\log x$. Define the prime counting function
+\[\pi(x) = \# \{\text{primes} \leq x\}.\]
+Then we should have
+\[\pi(x+y) - \pi(x) \approx \frac{y}{\log x} \]
+for $y$ ``small". Here, $y$ should be around
+\[(\log x)^{1 + \varepsilon} \leq y \leq x^\varepsilon.\]
+Gauss's guess is as follows:
+
+\[\pi(x) \sim \int_2^x \frac{dt}{\log t}.\]
+
+\begin{cnj}  \[\left \lvert\pi(x) - \int_2^x \frac{dt}{\log t}\right \rvert = x^{1/2 + o(1)}.\]
+\end{cnj}
+
+Difficulty of counting primes: they are defined as what they are not, not what they are. \\ \\
+\[\pi(x) - \pi(\sqrt{x}) + 1 = \#\{n \leq x : n \text{ has no prime factor } \leq \sqrt{x}\}.\]
+If we wish to count numbers $n \leq x$ which is not divisible by the first $k$ primes, then we could try the term
+\[\left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{3}\right) \left(1 - \frac{1}{5}\right) \cdots \left(1 - \frac{1}{p_k}\right)x.\]
+The first term contributes an error of at most $1$, the second term contributes an error of at most $2$, and so on. However, we expect the actual error term to be much smaller. If we expect this to work, then
+\[\pi(x) - \pi(\sqrt{x}) + 1 \approx x \prod_{p \leq \sqrt{x}} \left(1 - \frac{1}{p}\right) \approx \frac{x}{\log x},\]
+so that
+\[\prod_{p \leq \sqrt{x}} \left(1 - \frac{1}{p}\right) \sim \frac{1}{\log x}\]
+should hold. But
+\[\pi(x) - \pi(x^{2/3}) + 1 \approx x \prod_{p \leq x^{2/3}} \left(1 - \frac{1}{p}\right),\]
+which is inconsistent! \\ \\
+Truth: 
+\[\prod_{p \leq x} \left(1 - \frac{1}{p}\right) \sim \frac{e^{-\gamma}}{\log x},\]
+where
+\[\gamma = \lim_{N \rightarrow \infty} \left(\sum_{n \leq N} \frac{1}{n} - \log N\right).\]
+We can attempt to apply the same heuristic to twin primes, so that
+\[\#\{p \leq x : p, p+2 \text{ both primes}\} \approx \frac{x}{(\log x)^2}.\]
+Careful! Same heuristic applies to $\# \{p \leq x : p, p+1 \text{ both primes}\}$! Instead, we should be asking: is either $n$ or $n+1$ divisible by $2$? Is $n(n+1)$ divisible by $2$? 
+
+\newpage
+%%%2.
+\section{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\Introduction to sieve theory\\by Kannan Soundararajan}\label{2}
+
+\newpage
+%%%3.
+\section{Inputs from algebraic geometry\\by Emmanuel Kowalski}\label{3}
+
+\newpage
+%%%4.
+\section{The methods of Goldston, Pintz and Y{\i}ld{\i}r{\i}m and Maynard-Tao\\by James Maynard}\label{4}
+
+\end{document}

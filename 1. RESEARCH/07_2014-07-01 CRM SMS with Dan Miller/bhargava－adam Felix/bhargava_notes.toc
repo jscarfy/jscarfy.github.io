@@ -1,0 +1,51 @@
+\contentsline {part}{Part\ I. \enspace \noindent Background}{iii}{part.1}
+\contentsline {chapter}{\tocchapter {Chapter}{I}{Introduction and perspective: Counting Arithmetic Objects \\ Manjul Bhargava}}{v}{chapter.1}
+\contentsline {chapter}{\tocchapter {Chapter}{II}{Algebraic groups, representation theory, and invariant theory \\ Eyal Goren}}{ix}{chapter.2}
+\contentsline {chapter}{\tocchapter {Chapter}{III}{Basic algebraic number theory \\ (number fields, class groups, why they are useful and interesting) \\ Eknath Ghate}}{xi}{chapter.3}
+\contentsline {section}{\tocsection {}{1}{Algebraic number theory and Class groups via CM (Complex Multiplication)}}{xi}{section.3.1}
+\contentsline {chapter}{\tocchapter {Chapter}{IV}{Basics of binary quadratic forms and Gauss composition \\ Andrew Granville}}{xv}{chapter.4}
+\contentsline {chapter}{\tocchapter {Chapter}{V}{Curves: Geometric properties \\ Henri Darmon}}{xvii}{chapter.5}
+\contentsline {subsection}{\tocsubsection {}{0.1}{Vocabulary}}{xviii}{subsection.5.0.1}
+\contentsline {chapter}{\tocchapter {Chapter}{VI}{Basic analytic number theory \\ Andrew Granville}}{xxi}{chapter.6}
+\contentsline {section}{\tocsection {}{1}{$\DOTSB \sum@ \slimits@ \limits _{n \le x} a_{n}$ for various natural arithmetic $a_{n}$}}{xxi}{section.6.1}
+\contentsline {section}{\tocsection {}{2}{Complex Analysis and Number Theory}}{xxii}{section.6.2}
+\contentsline {subsection}{\tocsubsection {}{2.1}{Sieving}}{xxiv}{subsection.6.2.1}
+\contentsline {section}{\tocsection {}{3}{$abc$-conjecture}}{xxv}{section.6.3}
+\contentsline {chapter}{\tocchapter {Chapter}{VII}{Curves: Diophantine properties \\ Henri Darmon}}{xxvii}{chapter.7}
+\contentsline {section}{\tocsection {}{1}{Proof of the weak Mordell-Weil Theorem}}{xxviii}{section.7.1}
+\contentsline {section}{\tocsection {}{2}{Geometric interpretation of $\textnormal {\text {Sel}}_{n}(E/\mathbb {Q})$}}{xxviii}{section.7.2}
+\contentsline {part}{Part\ II. \enspace \noindent Rings and representations with one invariant}{xxxi}{part.2}
+\contentsline {chapter}{\tocchapter {Chapter}{VIII}{More algebraic groups, representation theory, and invariant theory \\ Eyal Goren}}{xxxiii}{chapter.8}
+\contentsline {chapter}{\tocchapter {Chapter}{IX}{Cubic rings \\ Melanie Wood}}{xxxv}{chapter.9}
+\contentsline {chapter}{\tocchapter {Chapter}{X}{Quartic and quintic rings \\ Melanie Wood}}{xxxvii}{chapter.10}
+\contentsline {chapter}{\tocchapter {Chapter}{XI}{Problem session I \\ Jennifer Park, Arul Shankar and Frank Thorne}}{xxxix}{chapter.11}
+\contentsline {chapter}{\tocchapter {Chapter}{XII}{How to count rings and fields I \\ Manjul Bhargava}}{xli}{chapter.12}
+\contentsline {chapter}{\tocchapter {Chapter}{XIII}{Rings associated to binary $n$-ic forms, composition of $2 \times n \times n$ boxes and class groups \\ Melanie Wood}}{xliii}{chapter.13}
+\contentsline {chapter}{\tocchapter {Chapter}{XIV}{The zeta functions attached to prehomogeneous vector spaces \\ Takashi Taniguchi}}{xlv}{chapter.14}
+\contentsline {chapter}{\tocchapter {Chapter}{XV}{Problem session II \\ Arul Shankar and Frank Thorne}}{xlvii}{chapter.15}
+\contentsline {chapter}{\tocchapter {Chapter}{XVI}{How to count rings and fields II \\ Manjul Bhargava}}{xlix}{chapter.16}
+\contentsline {chapter}{\tocchapter {Chapter}{XVII}{Heuristics for number field counts and applications to curves over finite fields \\ Melanie Wood}}{li}{chapter.17}
+\contentsline {chapter}{\tocchapter {Chapter}{XVIII}{Moduli space of rings \\ Bjorn Poonen}}{liii}{chapter.18}
+\contentsline {chapter}{\tocchapter {Chapter}{XIX}{Problem session III \\ Arul Shankar and Frank Thorne}}{lv}{chapter.19}
+\contentsline {chapter}{\tocchapter {Chapter}{XX}{Zeta function methods \\ Frank Thorne}}{lvii}{chapter.20}
+\contentsline {chapter}{\tocchapter {Chapter}{XXI}{Counting Artin representations and modular forms of weight one \\ Eknath Ghate}}{lix}{chapter.21}
+\contentsline {part}{Part\ III. \enspace \noindent Curves and Representations with a free ring of invariants}{lxi}{part.3}
+\contentsline {chapter}{\tocchapter {Chapter}{XXII}{Binary quartic forms: bounded average rank of elliptic curves \\ Arul Shankar}}{lxiii}{chapter.22}
+\contentsline {chapter}{\tocchapter {Chapter}{XXIII}{Selmer groups and heuristics I \\ Bjorn Poonen}}{lxv}{chapter.23}
+\contentsline {chapter}{\tocchapter {Chapter}{XXIV}{Rational points on curves \\ Michael Stoll}}{lxvii}{chapter.24}
+\contentsline {chapter}{\tocchapter {Chapter}{XXV}{Problem session IV \\ Jennifer Park and Arul Shankar}}{lxix}{chapter.25}
+\contentsline {chapter}{\tocchapter {Chapter}{XXVI}{Coregular spaces and genus one curves \\ Wei Ho}}{lxxi}{chapter.26}
+\contentsline {chapter}{\tocchapter {Chapter}{XXVII}{Arithmetic invariant theory and hyperelliptic curves I \\ Benedict Gross}}{lxxiii}{chapter.27}
+\contentsline {chapter}{\tocchapter {Chapter}{XXVIII}{TBA}}{lxxv}{chapter.28}
+\contentsline {chapter}{\tocchapter {Chapter}{XXIX}{Problem session V \\ Wei Ho and Jerry Wang}}{lxxvii}{chapter.29}
+\contentsline {chapter}{\tocchapter {Chapter}{XXX}{Applications to the Birch and Swinnerton-Dyer conjecture \\ Manjul Bhargava}}{lxxix}{chapter.30}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXI}{Selmer groups and heuristics II \\ Bjorn Poonen}}{lxxxi}{chapter.31}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXII}{Arithmetic invariant theory and hyperelliptic curves II \\ Benedict Gross}}{lxxxiii}{chapter.32}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXIII}{Problem session VI \\ Jennifer Park and Jerry Wang}}{lxxxv}{chapter.33}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXIV}{Chabauty methods and hyperelliptic curves \\ Bjorn Poonen}}{lxxxvii}{chapter.34}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXV}{Topological and algebraic geometry methods over function fields I \\ Jordan Ellenberg}}{lxxxix}{chapter.35}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXVI}{Counting methods over global fields \\ Jerry Wang}}{xci}{chapter.36}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXVII}{Problem session VII \\ Jordan Ellenberg, Jennifer Park and Jerry Wang}}{xciii}{chapter.37}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXVIII}{The Chabauty method and symmetric powers of curves \\ Jennifer Park}}{xcv}{chapter.38}
+\contentsline {chapter}{\tocchapter {Chapter}{XXXIX}{Topological and algebraic geometry methods over function fields II \\ Jordan Ellenberg}}{xcvii}{chapter.39}
+\contentsline {chapter}{\tocchapter {Chapter}{XL}{Future perspectives \\ Manjul Bhargava}}{xcix}{chapter.40}

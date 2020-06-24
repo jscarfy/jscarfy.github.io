@@ -1,0 +1,65 @@
+\chapter{Curves:  Geometric properties \\ Henri Darmon}\label{ch:5}
+
+\begin{definition}
+A \textbf{curve} over a field $\Bbbk$ is a smooth, geometrically connected variety of dimension $1$ over the field $\Bbbk$.
+\end{definition}
+What we should keep in mind for curves is equations:  for example, $x^{2}-Dy^{2}=1$, $y^{2}=x^{3}+ax+b$, or $x^{n}+y^{n}=z^{n}$.\\
+\indent We will be assuming that the characteristic of $\Bbbk$ is $0$.
+\indent One of the most important tools in this area is the Riemann-Roch Theorem.\\
+\indent Let $X$ be a projective curve.  Then, $X(\mathbb{C})$ looks like \textcolor{red}{(diagram 1)}.  We say that $U$ is \textbf{Zarski open} if $U=X \setminus \{p_{1},p_{2},\dotsc,p_{s}$, where $p_{i} \in X(\overline{\Bbbk})$.  We denote by $\mathscr{O}_{X}$ by the sheaf of regular functions on $X$.  We denote by $\mathscr{O}(U)$ the regular functions.\\
+\indent \underline{\textbf{Question}}:  We would like to understand $\mathscr{O}(U)$ as a ring.  Note that $\mathscr{O}(U)=\Bbbk[f_{1},f_{2},\dotsc,f_{n}]/\langle\text{relations } p_{i}(f_{1},f_{2},\dotsc,f_{n})=0 \text{ for } i=1,2,\dotsc,n\rangle$.  Here $(f_{1},f_{2},\dotsc,f_{n}):U \to^{injection} \mathbb{A}^{n}$.  Liouville proved $\mathscr{O}(X)=\Bbbk$.\\
+\indent \underline{\textbf{Assumption}}:  there exists $\infty \in X(\Bbbk)$ and $U=X \setminus \{\infty\}$.\\
+\indent Then, $\mathscr{O}(U,n\infty)=\{f \in \mathscr{O}(U): \ord_{\infty} f \ge -n\}$.  Note that
+\begin{equation*}
+\Bbbk=\mathscr{O}(X) \subset \mathscr{O}(U;\infty) \subset \mathscr{O}(U;2\infty) \subset \dotsb \subset \mathscr{O}(U;n\infty) \subset \dotsb \subset \mathscr{O}(U).
+\end{equation*}
+Note that the dimension of $\mathscr{O}(U,(n+1)\infty)$ in $\mathscr{O}(U,n\infty)$ is at most $1$.  Thus, $\dim_{\Bbbk} \mathscr{O}(U;n\infty) \le n+1$.
+\begin{theorem}[Riemann-Roch; Crude Form]
+there is an integer $g$, depending on $X$, but not on $\infty$ or $n$, such that
+\begin{equation*}
+\dim \mathscr{O}(U;n\infty) \ge n+1-g
+\end{equation*}
+with equality if $n$ is sufficiently large.
+\end{theorem}
+\begin{proof}[Idea of proof]
+Choose a parameter $t$ at $\infty$.  Then, the principal part satisfies $PP_{\infty} \cdot \mathscr{O}(U;n\infty) \to t^{-n}\Bbbk[t]/\Bbbk[t]$.  What are the obstructions to producing $f$ with given $PP_{\infty}$?\\
+\indent \underline{\textbf{Residue Theorem}}:  If $\omega$ on $X(\Bbbk)$ is a meromorphic differential, then
+\begin{equation*}
+\sum_{\rho \in X(\overline{\Bbbk})} \res_{\rho}(\omega)=0.
+\end{equation*}
+\end{proof}
+For example, if $\omega=(a_{m}t^{-m}+a_{m-1}t^{-m+1}+\dotsb+a_{0}+a_{1}t+\dotsb)dt$, then $\res(\omega)=a_{-1}$.
+\begin{corollary}
+If $\omega \in \Omega^{1}(X)$ is a global regular differential and $f \in \mathscr{O}(U)$, then $\res_{\infty}(f\omega)=0$.
+\end{corollary}
+Define $\res_{\infty}: t^{-n}\Bbbk[t]/\Bbbk[t] \to \Omega^{1}(X)\check{}$ where $f \mapsto (\omega \mapsto \res_{\infty}(f\omega)$.  Then, we have the following sequence
+\begin{equation*}
+0 \to \Bbbk_{dim 1} \to \mathscr{O}(U;n\infty) \to^{PP_{\infty}} t^{-n}\Bbbk[t]/\Bbbk[t]_{dim n} \to^{\res_{\infty}} \Omega^{1}(X)\check{}_{dim g} \to \Omega(X;-n\infty)\check{}_{dim \to 0 as n \to \infty} \to 0.
+\end{equation*}
+Define $\Omega^{1}(X;-n\infty)=\{\omega \in \Omega^{1}(X) \text{ such that } \ord_{\infty}(\omega) \ge n\}$.  Note that $\Omega^{1}(X;-n\infty) \subset \Omega^{1}(X)$ and $\Omega^{1}(X)\check{} \to^{\text{surjection}} \Omega^{1}(X;-n\infty)\check{}$.  The Riemann-Roch Theorem gives us that the above sequence is exact.  Note the dimensions of the sequence are indicated above.  A more precise version of the Riemann-Roch Theorem is the following:  let $g=\dim_{\Bbbk} \Omega^{1}(X)$.  Then, $\dim \mathscr{O}(U;n\infty)-\dim \Omega^{1}(X;-n\infty)=n+1-g$.
+
+\subsection{Vocabulary}
+
+A \textbf{division} of $X$ is a formal finite linear combination of points in $X(\overline{\Bbbk})$ with integer coefficients: $\sum_{P \in X(\overline{\Bbbk})} n_{P}\cdot P$, $n_{P} \in \mathbb{Z}$ and $n_{P}=0$ for all but finitely many $P \in X(\overline{\Bbbk})$.  We denote the divisor of $X(\overline{\Bbbk})$ by $\div(X(\overline{\Bbbk})$.  Note that $\div(X(\Bbbk))=\div(X(\overline{\Bbbk}))^{G_{\Bbbk}}$.\\
+\indent $\Bbbk(X)=\lim_{\to_{U}} \mathscr{O}(U)$, the rational functions.  For $f \in \Bbbk(X)$, $\div(f)=\sum_{P \in X(\overline{\Bbbk})} \ord_{P}(f) \cdot P \subset \div(X/\Bbbk)$ is called a \textbf{principal divisor}.  We say that $D_{1} \ge D_{2}$ if $n_{P}(D_{1}) \ge n_{P}(D_{2}$ for all $P \in X(\overline{\Bbbk})$.  We denote by $\mathscr{L}(D)$ the set $\{f \in \Bbbk(X) \text{ such that } \div(f) \ge -D\}$.  Then, $\mathscr{O}(U;n\infty)=\mathscr{L}(n\infty)$.  So $\Omega_{\text{mer}}^{1}(X)=\lim_{\to_{U}} \Omega^{1}(U)$ is a one-dimensional vector space over $\Bbbk(X)$.  choose $\omega \in \Omega_{\text{mer}}^{1}(X)$ with $\div(\omega)=K$.  Note that $\omega \ne 0$.
+\begin{definition}
+$K$ is called the \textbf{canonical divisor class}.
+\end{definition}
+\begin{remark}
+$\mathscr{L}(K) \cong \Omega^{1}(X)$ given by $f \mapsto f\omega$.  Also, $\Omega^{1}(X;-n\infty)=\mathscr{L}(K-n\infty)$.  Then, the final form of the Riemann-Roch Theorem is the following:  for all (positive) divisors $D \in \div(X/\Bbbk)$, then $\dim(\mathscr{L}(D))-\dim\mathscr{L}(K-D)=\deg(D)+1-g$.
+\end{remark}
+\indent Some consequences:  $g=\dim \mathscr{L}(K)$
+\begin{enumerate}[\upshape (a)]
+\item $D=0$.  Then, the Riemann-Roch Theorem gives us $1-\dim \mathscr{L}(K)=1-g$.
+\item $D=K$.  Then, $\dim \mathscr{L}(K)-1=\deg (K)+1-g$.  However, $g=\dim \mathscr{L}(K)$.  So , $g-1=\deg(K)+1-g$.  Thus, $\deg(K)=2g-2$.  Therefore, the number of zeros of $\omega \in \Omega^{1}(X)$ is $2g-2$.
+\end{enumerate}
+Let $g=0$.  If $X(\Bbbk) \ne \varnothing$, then $\infty \in X(\Bbbk)$.  So, $\dim \mathscr{L}(n\infty)=n+1$.  So $\mathscr{L}(\infty)=\Bbbk \oplus \Bbbk t$, $\mathscr{L}(2\infty)=\Bbbk \oplus \Bbbk t \oplus \Bbbk t^{2}$.  Continuing in this fashion $\mathscr{L}(n\infty)=\Bbbk \oplus \Bbbk t \oplus \dotsb \oplus \Bbbk t^{n}$.  Thus, $\mathscr{O}(U)=\Bbbk[t]$, $U \cong \mathbb{A}^{1}$ and $X \cong \mathbb{P}_{1}$.\\
+\indent Fact:  $X$ has a rational divisor of degree $2$ ($g=0$ in $\deg K=2g-2$).  Then, $P+P^{\prime}$ with $P \in X(\overline{\Bbbk})$.  So $\deg(-K)=2$ and $-K=P+P^{\prime}$.  Hence, $\mathscr{L}(P+P^{\prime})=\Bbbk \oplus \Bbbk u \oplus \Bbbk v$, $\mathscr{L}(2P+2P^{\prime})=\Bbbk \oplus \Bbbk u \oplus \Bbbk v+\Bbbk uv+\Bbbk v^{2}+\Bbbk u^{2}$.  So there is a relation:  $a+bu+cv+duv+ev^{2}+fu^{2}=0$.\\
+\indent Let $g=1$.  A curve of genus $1$ with $\infty \in X(\Bbbk)$ is an elliptic curve.  So $\dim \Omega^{1}(X)=1$.  So,  $\omega \in \Omega^{1}(X)$ is everywhere non-vanishing.  So $\Omega^{1}(X) \cong \mathscr{O}_{X}$ and $\mathscr{O}(X)=\Bbbk$.  Note that $\dim \mathscr{L}(D)-\dim(\mathscr{L}(-D))=\deg(D)$.  So $\dim \mathscr{L}(\infty)-\dim \mathscr{L}(-\infty)=1$.  Hence, $\dim \mathscr{L}(-n\infty)=0$ for all $n > 0$.  Thus, $\dim\mathscr{L}(D)=\deg(D)$.  Then, $\mathscr{L}(2\infty)=\Bbbk \oplus \Bbbk x$, $\mathscr{L}(3\infty)=\Bbbk \oplus \Bbbk x \oplus \Bbbk y$, $\mathscr{L}(4\infty)=\Bbbk \oplus \Bbbk x \oplus \Bbbk y \oplus \Bbbk x^{2}$, $\mathscr{L}(5\infty)=\Bbbk \oplus \Bbbk x \oplus \Bbbk y \oplus \Bbbk x^{2} \oplus \Bbbk xy$, $\mathscr{L}(6\infty)=\Bbbk \oplus \Bbbk x \oplus \Bbbk y \oplus \Bbbk x^{2} \oplus \Bbbk xy \oplus \Bbbk y^{2}+\Bbbk x^{3}$.  So $y^{2}-x^{3} \in \mathscr{L}(5\infty)$.  So, there exists $a_{i}$ such that $y^{2}+a_{1}xy+a_{3}y=x^{3}+a_{2}x^{2}=a_{4}x+a_{6}$, which can be transformed by $y^{2}=x^{3}=ax+b$.\\
+\indent Suppose $X(\Bbbk)=\varnothing$.  The simplest case:  $X$ has a rational divisor of degree $2$.  This is true for elements of $\sel_{2}(E/\Bbbk)$.
+\begin{theorem}
+$X$ has an equation of the form:  $y^{2}=ax^{4}+bx^{3}+c^{2}+dx+e$.
+\end{theorem}
+\begin{proof}
+$\mathscr{L}(P+P^{\prime})=\Bbbk \oplus \Bbbk x$, $\mathscr{L}(2P+2P^{\prime})=\Bbbk \oplus \Bbbk x \oplus \Bbbk x^{2} \oplus \Bbbk y$, $\mathscr{L}(4P+4P^{\prime})=\dotsb$.
+\end{proof}
