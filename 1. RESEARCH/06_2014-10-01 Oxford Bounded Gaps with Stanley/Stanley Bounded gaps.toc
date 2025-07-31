@@ -1,5 +1,0 @@
-\contentsline {section}{\tocsection {}{1}{Introduction to prime number theory.\\ $\zeta $- and $L$-functions, the prime number theorem\\by Andrew Granville}}{2}{section.1}
-\contentsline {subsection}{\tocsubsection {}{1.1}{Lecture 1}}{2}{subsection.1.1}
-\contentsline {section}{\tocsection {}{2}{The Bombieri-Vinogradov theorem about distribution of primes in progressions. \\Introduction to sieve theory\\by Kannan Soundararajan}}{4}{section.2}
-\contentsline {section}{\tocsection {}{3}{Inputs from algebraic geometry\\by Emmanuel Kowalski}}{5}{section.3}
-\contentsline {section}{\tocsection {}{4}{The methods of Goldston, Pintz and Y{\i }ld{\i }r{\i }m and Maynard-Tao\\by James Maynard}}{6}{section.4}
