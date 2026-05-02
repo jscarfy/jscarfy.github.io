@@ -1,0 +1,53 @@
+name: One-time profile text update
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  update-profile-text:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update names and email in HTML pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          replacements = {
+              'Pu Justin Scarfy \\( \\mathbb{Y} \\)ang 楊靐龘 ☯️': 'Justin Scarfy',
+              'Pu Justin Scarfy Yang 楊靐龘 ☯️': 'Justin Scarfy',
+              'Pu Justin Scarfy Yang 楊靐龘': 'Justin Scarfy',
+              'Pu Justin Scarfy Yang': 'Justin Scarfy',
+              'Pu Justin Scarfy': 'Justin Scarfy',
+              'pujustinscarfyyang (at) icloud (dot) com': 'justinscarfy@gmail.com',
+              'pujustinscarfyyang@icloud.com': 'justinscarfy@gmail.com',
+              'pujustunscarfyyang@icloud.com': 'justinscarfy@gmail.com',
+              'pujustinscarfyyang (at) icloud (dot)com': 'justinscarfy@gmail.com',
+              'Last modified on July 01, 2024': 'Last modified on May 02, 2026',
+              'charset="ISO-8859-1"': 'charset="UTF-8"',
+          }
+          for path in [Path('index.html'), Path('research.html'), Path('Music.html')]:
+              if not path.exists():
+                  continue
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements.items():
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit updates and remove workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/update-profile-once.yml
+          git add index.html research.html Music.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update profile name and email across site"
+            git push
+          fi
