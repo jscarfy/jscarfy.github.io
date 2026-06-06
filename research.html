@@ -1,0 +1,224 @@
+对，你这个页面可以大幅压缩。建议你先把原来的 research.html 备份成：
+
+research-full-archive.html
+
+然后把公开的 research.html 换成下面这个简洁版。它保留你的可信度：研究兴趣、公开讲座、出版/笔记、独立研究方向、accessibility 说明；但去掉大量 iCloud PDF link、超长标题列表、UBC 长文 featured box、过度暴露的研究资产。
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Justin Scarfy: Research</title>
+  <link rel="stylesheet" type="text/css" href="mathHStyles.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      line-height: 1.5;
+    }
+    #banner {
+      background-color: #003399;
+      height: 50px;
+      width: 100%;
+    }
+    #profileRow {
+      display: flex;
+      padding: 20px;
+      align-items: center;
+    }
+    #profileRow img {
+      height: 220px;
+      border: 3px solid black;
+      margin-right: 20px;
+    }
+    #profileRow h1 {
+      margin: 0;
+    }
+    #navbar {
+      background-color: #f0f0f0;
+      padding: 10px 15px;
+    }
+    #navbar a {
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #003366;
+    }
+    #navbar a#current {
+      color: #cc6600;
+    }
+    #contentArea {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #sidebar {
+      width: 200px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    #mainContent {
+      flex-grow: 1;
+      max-width: 900px;
+      padding: 20px;
+    }
+    #footer {
+      background-color: #eaeaea;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #001949;
+      width: 100%;
+      margin: 0;
+      border-top: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    ul {
+      padding-left: 18px;
+    }
+    .note {
+      border-left: 4px solid #003399;
+      background: #f6f8ff;
+      padding: 10px 14px;
+      margin: 14px 0;
+    }
+    .small {
+      font-size: 0.95em;
+      color: #333;
+    }
+  </style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\$begin:math:text$\'\, \'\\$end:math:text$'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<div id="banner"></div>
+<div id="profileRow">
+  <img src="mathpics/Scarfy.jpg" alt="Photo of Justin Scarfy">
+  <div>
+    <h1>Justin Scarfy</h1>
+    <p>Independent Researcher and Inventor</p>
+    <p><b>E-mail Address:</b><br>
+    scarfyjustin (at) gmail (dot) com</p>
+  </div>
+</div>
+<div id="navbar">
+  <a href="index.html">Welcome</a>
+  <a href="research.html" id="current">Research</a>
+  <a href="Music.html">Music</a>
+</div>
+<div id="contentArea">
+  <div id="sidebar">
+    <h4>Links</h4>
+    <ul>
+      <li><a href="http://www.numbertheory.org/ntw/additions.html">Number Theory Web</a></li>
+      <li><a href="http://cms.math.ca/">Canadian Mathematical Society</a></li>
+      <li><a href="http://www.ams.org/home/page">American Mathematical Society</a></li>
+      <li><a href="http://www.euro-math-soc.eu/">European Mathematical Society</a></li>
+      <li><a href="https://homotopytypetheory.org/">Homotopy Type Theory</a></li>
+    </ul>
+  </div>
+  <div id="mainContent">
+<h3>Research Interests</h3>
+<p>
+  My research interests are primarily in number theory, formalized mathematics,
+  logic, and computer-assisted mathematical writing.
+</p>
+<ul>
+  <li><b>Analytic number theory:</b> primes, sieve methods, zero-free regions, and $begin:math:text$L$end:math:text$-functions.</li>
+  <li><b>Arithmetic geometry and Galois theory:</b> Galois representations, Iwasawa theory, motives, and $begin:math:text$p$end:math:text$-adic methods.</li>
+  <li><b>Automorphic forms:</b> trace formulas, Langlands-type structures, and arithmetic applications.</li>
+  <li><b>Logic and formalization:</b> proof assistants, Homotopy Type Theory, and computer-assisted reasoning.</li>
+</ul>
+<div class="note">
+  <p>
+    I am a disabled independent researcher. Reliable written communication and
+    suitable computing equipment are essential for my study, writing, coding,
+    document organization, and research work.
+  </p>
+</div>
+<h3>Selected Public Research and Writing</h3>
+<p>
+  Selected public examples of my independent research and writing activity are listed below.
+  A larger private archive is maintained offline.
+</p>
+<ul>
+  <li><b>Yang Number Systems: An Introduction</b> — exploratory work on generalized number-system structures.</li>
+  <li><b>Complex Numbers Cohomology</b> — notes on cohomological perspectives related to complex-number structures.</li>
+  <li><b>Motivic Sieves and Number Theory</b> — exploratory notes connecting sieve ideas with motivic language.</li>
+  <li><b>Exponential Number Theory</b> — initial notes on exponential analogues in number-theoretic structures.</li>
+  <li><b>Non-Associative Galois Theory</b> — exploratory work on Galois-type ideas beyond associative settings.</li>
+  <li><b>The Necessity of AI in Future Mathematical Discoveries</b> — a reflection on computing and mathematical research.</li>
+</ul>
+<p class="small">
+  Some older files and drafts may be made available upon request.
+</p>
+<h3>Selected Seminar Talks</h3>
+<p>
+  As an undergraduate, I gave several seminar presentations in graduate-level
+  mathematics courses at the University of British Columbia. Selected topics included:
+</p>
+<ul>
+  <li>Selberg Trace Formula for Compact Quotients, MATH 592, 2015.</li>
+  <li>Group and Galois Cohomology, MATH 613E, 2015.</li>
+  <li>The Arthur-Selberg Trace Formula, MATH 592, 2015.</li>
+  <li>Hodge-de Rham Theory and Drinfeld Associators, MATH 620D, 2015.</li>
+  <li>What is the Riemann Hypothesis and Why Do We Care?, PIMS Young Researchers Conference, 2014.</li>
+  <li>A Feast of $begin:math:text$L$end:math:text$-functions, MATH 529, 2011.</li>
+  <li>Hardy's theorem and Selberg's theorem on zeros of $begin:math:text$\\zeta\(s\)$end:math:text$, MATH 613E, 2011.</li>
+</ul>
+<p class="small">
+  Slides for selected talks may be provided upon request.
+</p>
+<h3>Publications and Notes</h3>
+<ul>
+  <li>
+    <a href="https://personal.math.ubc.ca/~gerg/papers/downloads/ABCPNT.pdf">
+      An Annotated Bibliography for Comparative Prime Number Theory
+    </a>,
+    with Greg Martin.
+  </li>
+  <li>
+    Lecture notes for the CRM workshop on counting arithmetic objects,
+    prepared with Stanley Yao Xiao.
+  </li>
+</ul>
+<h3>Public Record</h3>
+<p>
+  I also maintain a separate public record concerning institutional accountability
+  and disability-related matters. This material is separate from the research summary above.
+  Relevant documents may be provided or cited by version date when appropriate.
+</p>
+<h3>Contact</h3>
+<p>
+  For research, writing, accessibility, or equipment-related correspondence,
+  please contact me by email. Due to a speech/language disability, written
+  communication is preferred.
+</p>
+  </div>
+</div>
+<div id="footer">
+  <p>Last modified on May 02, 2026.</p>
+  <p>Page maintained by <a href="https://jscarfy.github.io/">Justin Scarfy Yang</a>.</p>
+  <p>This page is https://jscarfy.github.io/research.html</p>
+  <p>
+    This page and original materials linked from it are &copy; Justin Scarfy Yang.
+    They may not be copied, used, or revised without explicit written permission,
+    except where otherwise indicated.
+  </p>
+</div>
+</body>
+</html>
+
+这个版本的效果是：别人看到你是残疾独立研究人员 + 长期数学写作者 + 需要电脑设备的人，但不会马上看到巨大研究列表、iCloud 文件、1000+ 页争议文件或核心资产。
+
+你原来的长页面可以留着，但建议不要公开链接，或者改名成不容易被主页发现的 archive 页面。
